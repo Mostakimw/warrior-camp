@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -75,7 +76,7 @@ const Login = () => {
               />
             </svg>
             <input
-              className="pl-2 outline-none border-none"
+              className="pl-2 outline-none border-none w-full"
               type="text"
               {...register("password", { required: true })}
               placeholder="Password"
@@ -95,6 +96,17 @@ const Login = () => {
           </span>
         </form>
         <SocialLogin />
+        <div className="text-center text-sm">
+          <p>
+            New to Warrior? Please{" "}
+            <Link
+              to="/registration"
+              className="btn btn-outline btn-sm border-[#FCC044]"
+            >
+              Registration
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
