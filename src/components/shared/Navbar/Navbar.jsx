@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
 import Container from "../../Container";
+import { useAuth } from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logoutUser } = useAuth();
+
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        console.log("logout success");
+      })
+      .catch(() => {});
+  };
   const menuItem = (
     <>
       <li>
@@ -51,9 +61,15 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{menuItem}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login" className="btn">
-            Login
-          </Link>
+          {user ? (
+            <button onClick={handleLogout} className="btn">
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="btn">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </Container>

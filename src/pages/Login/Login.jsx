@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
+  const { loginUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -10,6 +12,13 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    loginUser(data?.email, data?.password)
+      .then((result) => {
+        console.log("login user", result.user);
+      })
+      .catch((error) => {
+        console.log("error from login page", error.message);
+      });
   };
   return (
     <div className="h-[80vh] md:flex mt-10">

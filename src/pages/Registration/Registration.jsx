@@ -1,15 +1,29 @@
 import { useForm } from "react-hook-form";
 import SocialLogin from "../Login/SocialLogin";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const Registration = () => {
+  const { user, createUser } = useAuth();
+  if (user) {
+    console.log("user created");
+  }
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  // ! registration form submit handler
   const onSubmit = (data) => {
     console.log(data);
+    createUser(data?.email, data?.password)
+      .then((data) => {
+        console.log("registration success", data.user);
+      })
+      .catch((error) => {
+        console.log("error on registration", error.message);
+      });
   };
   return (
     <div>
