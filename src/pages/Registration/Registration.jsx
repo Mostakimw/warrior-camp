@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 const Registration = () => {
-  const { user, createUser } = useAuth();
+  const { user, createUser, updateUserProfile } = useAuth();
   if (user) {
     console.log("user created");
   }
@@ -18,8 +18,12 @@ const Registration = () => {
   const onSubmit = (data) => {
     console.log(data);
     createUser(data?.email, data?.password)
-      .then((data) => {
-        console.log("registration success", data.user);
+      .then((result) => {
+        console.log("registration success", result.user);
+        console.log(data?.name);
+        updateUserProfile(data?.name, data?.photoUrl)
+          .then(() => console.log("user updated"))
+          .catch(() => {});
       })
       .catch((error) => {
         console.log("error on registration", error.message);
