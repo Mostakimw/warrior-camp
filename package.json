@@ -20,6 +20,7 @@
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.9.0",
     "react-router-dom": "^6.11.2",
+    "react-slick": "^0.29.0",
     "sort-by": "^1.2.0",
     "swiper": "^9.3.2"
   },
