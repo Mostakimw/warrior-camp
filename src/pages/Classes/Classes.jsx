@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
-import ClassCard from "./ClassCard";
+import ClassesCard from "./ClassesCard";
+import useClasses from "../../hooks/useClasses";
 
 const Classes = () => {
-  const [classes, setClasses] = useState([]);
-  useEffect(() => {
-    fetch("/classes.json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setClasses(data);
-      });
-  }, []);
+  const classes = useClasses();
   return (
     <div>
       <SectionTitle title="All Classes"></SectionTitle>
       <h1>all classes</h1>
       <div>
         {classes.map((singleClass) => (
-          <ClassCard
+          <ClassesCard
             key={singleClass.className}
             singleClass={singleClass}
-          ></ClassCard>
+          ></ClassesCard>
         ))}
       </div>
     </div>

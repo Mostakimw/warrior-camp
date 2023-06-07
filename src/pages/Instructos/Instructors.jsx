@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import InstructorCard from "./InstructorCard";
+import useInstructors from "../../hooks/useInstructors";
 
 const Instructors = () => {
-  const [instructors, setInstructors] = useState([]);
-  useEffect(() => {
-    fetch("/instructor.json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setInstructors(data);
-      });
-  }, []);
+  const instructors = useInstructors();
   return (
     <div>
       <SectionTitle title="Our Instructors"></SectionTitle>

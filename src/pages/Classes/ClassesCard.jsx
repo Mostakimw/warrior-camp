@@ -1,4 +1,4 @@
-const ClassCard = ({ singleClass }) => {
+const ClassesCard = ({ singleClass }) => {
   const {
     image,
     className,
@@ -35,4 +35,4 @@ const ClassCard = ({ singleClass }) => {
   );
 };
 
-export default ClassCard;
+export default ClassesCard;
