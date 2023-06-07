@@ -25,6 +25,46 @@ const Navbar = () => {
       </li>
     </>
   );
+  const userMenu = (
+    <>
+      {user ? (
+        <>
+          <div className="dropdown dropdown-end">
+            <label
+              tabIndex={0}
+              className="text-gray-800 bg-gray-100 hover:cursor-pointer hover:border-2  transition-all duration-300"
+            >
+              <img
+                src={user?.photoURL}
+                className="rounded-full h-10 w-10 mr-4"
+                alt=""
+                title={user?.displayName}
+              />
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu dropdown-content shadow bg-base-100 text-gray-800 w-40"
+            >
+              <li>
+                <Link to="/dashboard" className="btn pt-4">
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <button onClick={handleLogout} className="btn pt-4 mt-3">
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        </>
+      ) : (
+        <Link to="/login" className="btn">
+          Login
+        </Link>
+      )}
+    </>
+  );
   return (
     <Container>
       <div className="navbar bg-base-100 p-0">
@@ -60,17 +100,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{menuItem}</ul>
         </div>
-        <div className="navbar-end">
-          {user ? (
-            <button onClick={handleLogout} className="btn">
-              Logout
-            </button>
-          ) : (
-            <Link to="/login" className="btn">
-              Login
-            </Link>
-          )}
-        </div>
+        <div className="navbar-end">{userMenu}</div>
       </div>
     </Container>
   );
