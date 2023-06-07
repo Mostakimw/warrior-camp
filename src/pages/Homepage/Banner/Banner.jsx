@@ -1,31 +1,20 @@
-import AwesomeSlider from "react-awesome-slider";
-import "react-awesome-slider/dist/styles.css";
-
 const Banner = () => {
   return (
     <>
-      <AwesomeSlider className="h-[80vh]">
-        <div data-src="https://i.ibb.co/j51RzV7/banner-1.jpg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ex
-          assumenda blanditiis deleniti perspiciatis quod maiores quasi pariatur
-          repellendus animi.
+      <div className="hero min-h-screen bg-[url('https://i.ibb.co/j51RzV7/banner-1.jpg')]">
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+            <p className="mb-5">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+              et a id nisi.
+            </p>
+            <button className="btn btn-primary">Get Started</button>
+          </div>
         </div>
-
-        <div data-src="https://i.ibb.co/j51RzV7/banner-1.jpg">
-          <p className="bg-red-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ex
-            assumenda blanditiis deleniti perspiciatis quod maiores quasi
-            pariatur repellendus animi.
-          </p>
-        </div>
-        <div data-src="https://i.ibb.co/j51RzV7/banner-1.jpg">
-          <p className="bg-red-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ex
-            assumenda blanditiis deleniti perspiciatis quod maiores quasi
-            pariatur repellendus animi.
-          </p>
-        </div>
-      </AwesomeSlider>
+      </div>
     </>
   );
 };

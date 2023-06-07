@@ -1,0 +1,50 @@
+[
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "className": "Karate for Beginners",
+    "instructorName": "John Smith",
+    "availableSeats": 15,
+    "price": "$50",
+    "description": "Join our Karate for Beginners class and learn the fundamentals of karate, including basic stances, punches, kicks, and self-defense techniques. Led by experienced instructor John Smith, this class is suitable for all skill levels. Limited seats available, so enroll now!"
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "className": "Taekwondo Sparring Techniques",
+    "instructorName": "Emily Johnson",
+    "availableSeats": 12,
+    "price": "$60",
+    "description": "Experience the thrill of sparring in taekwondo! In this class, instructor Emily Johnson will teach you different strategies, footwork, and effective striking techniques for competitive sparring. Open to all levels, this class will help you improve your skills and build confidence."
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "className": "Judo Throws and Grappling",
+    "instructorName": "Michael Davis",
+    "availableSeats": 10,
+    "price": "$55",
+    "description": "Discover the art of judo and master various throws and grappling techniques. Join instructor Michael Davis as he guides you through the principles of balance, timing, and leverage. This class is suitable for beginners and intermediate learners looking to enhance their skills on the mat."
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "className": "Brazilian Jiu-Jitsu Fundamentals",
+    "instructorName": "Sarah Wilson",
+    "availableSeats": 8,
+    "price": "$70",
+    "description": "Learn the essential techniques of Brazilian Jiu-Jitsu with instructor Sarah Wilson. This class focuses on ground fighting, submissions, and positional control. Whether you're a beginner or have some experience, this class will help you develop your skills and deepen your understanding of Jiu-Jitsu."
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "className": "Kickboxing Cardio Fitness",
+    "instructorName": "David Lee",
+    "availableSeats": 20,
+    "price": "$45",
+    "description": "Get ready to sweat and burn calories in our Kickboxing Cardio Fitness class! Led by instructor David Lee, this high-energy workout combines kickboxing techniques with fitness exercises. Improve your cardiovascular health, endurance, and overall fitness while having a blast."
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "className": "Kung Fu Forms and Weapons",
+    "instructorName": "Jessica Chen",
+    "availableSeats": 10,
+    "price": "$65",
+    "description": "Immerse yourself in the world of Kung Fu! Join instructor Jessica Chen to learn traditional Kung Fu forms and the proper usage of various weapons like staff, sword, and nunchaku. This class offers a unique opportunity to develop discipline, coordination, and mastery of martial arts."
+  }
+]
