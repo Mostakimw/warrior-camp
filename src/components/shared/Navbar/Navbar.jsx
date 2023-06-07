@@ -43,7 +43,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu dropdown-content shadow bg-base-100 text-gray-800 w-40"
+              className="menu dropdown-content shadow bg-base-100 text-gray-800 w-40 z-10"
             >
               <li>
                 <Link to="/dashboard" className="btn pt-4">

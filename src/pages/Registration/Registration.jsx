@@ -22,7 +22,26 @@ const Registration = () => {
         console.log("registration success", result.user);
         console.log(data?.name);
         updateUserProfile(data?.name, data?.photoUrl)
-          .then(() => console.log("user updated"))
+          .then(() => {
+            console.log("user updated");
+            const user = {
+              email: data?.email,
+              name: data?.name,
+              role: "student",
+            };
+            console.log(user);
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(user),
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                console.log("user posted to db", result);
+              });
+          })
           .catch(() => {});
       })
       .catch((error) => {

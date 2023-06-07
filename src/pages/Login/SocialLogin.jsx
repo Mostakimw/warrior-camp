@@ -6,7 +6,25 @@ const SocialLogin = () => {
   const handleGoogleLogin = () => {
     console.log("google clicked");
     googleLogin()
-      .then((data) => console.log(data.user))
+      .then((data) => {
+        console.log(data.user);
+        const loggedUser = {
+          email: data?.user?.email,
+          name: data?.user?.displayName,
+          role: "student",
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(loggedUser),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log("user posted to db", result);
+          });
+      })
       .catch((err) => console.log(err.message));
   };
   return (
