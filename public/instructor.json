@@ -1,0 +1,44 @@
+[
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "name": "John Smith",
+    "email": "john.smith@example.com",
+    "numClasses": 3,
+    "className": "Karate for Beginners"
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "name": "Emily Johnson",
+    "email": "emily.johnson@example.com",
+    "numClasses": 2,
+    "className": "Taekwondo Sparring Techniques"
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "name": "Michael Davis",
+    "email": "michael.davis@example.com",
+    "numClasses": 4,
+    "className": "Judo Throws and Grappling"
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "name": "Sarah Wilson",
+    "email": "sarah.wilson@example.com",
+    "numClasses": 3,
+    "className": "Brazilian Jiu-Jitsu Fundamentals"
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "name": "David Lee",
+    "email": "david.lee@example.com",
+    "numClasses": 2,
+    "className": "Kickboxing Cardio Fitness"
+  },
+  {
+    "image": "https://i.ibb.co/wKycvGF/portrait-smiling-chef-uniform.jpg",
+    "name": "Jessica Chen",
+    "email": "jessica.chen@example.com",
+    "numClasses": 3,
+    "className": "Kung Fu Forms and Weapons"
+  }
+]
