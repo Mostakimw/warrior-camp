@@ -1,13 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import AdminDashboard from "./AdminDashboard";
 import InstructorDashboard from "./InstructorDashboard";
+import { FaHome } from "react-icons/fa";
 
 const Dashboard = () => {
   return (
     <div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col items-center justify-center w-9/12 mx-auto">
           {/* Page content here */}
           <Outlet />
           <label
@@ -23,6 +24,13 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             <AdminDashboard />
             <InstructorDashboard />
+            <div className="divider"></div>
+            <li>
+              <Link to="/">
+                <FaHome className="text-[#FCC044] text-2xl" />
+                Home
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
