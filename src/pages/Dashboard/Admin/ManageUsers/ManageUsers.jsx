@@ -12,6 +12,21 @@ const ManageUsers = () => {
         setUsers(data);
       });
   }, []);
+
+  const handleRole = (role, id) => {
+    console.log(role, id);
+    fetch(`http://localhost:5000/users/${id}/role`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ role }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
   return (
     <>
       <SectionTitle title="Manage All Users" />
@@ -48,7 +63,12 @@ const ManageUsers = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <th>
-                  <button className="btn w-40 btn-xs">Make An Admin</button>
+                  <button
+                    onClick={() => handleRole("admin", user._id)}
+                    className="btn w-40 btn-xs"
+                  >
+                    Make An Admin
+                  </button>
                   <button className="btn w-40 btn-xs block mt-2">
                     Make An Instructor
                   </button>
