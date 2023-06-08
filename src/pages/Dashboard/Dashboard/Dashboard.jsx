@@ -9,8 +9,8 @@ const Dashboard = () => {
   return (
     <div>
       <div className="drawer lg:drawer-open">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center w-9/12 mx-auto">
+        <input type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col items-center justify-center w-[90%] mx-auto">
           {/* Page content here */}
           <Outlet />
           <label
