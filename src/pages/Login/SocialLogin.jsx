@@ -1,5 +1,6 @@
 import { FaGoogle } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
+import { saveUserToDb } from "../../api/Auth";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
@@ -8,22 +9,24 @@ const SocialLogin = () => {
     googleLogin()
       .then((data) => {
         console.log(data.user);
-        const loggedUser = {
-          email: data?.user?.email,
-          name: data?.user?.displayName,
-          role: "student",
-        };
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(loggedUser),
-        })
-          .then((res) => res.json())
-          .then((result) => {
-            console.log("user posted to db", result);
-          });
+        // save user to db
+        saveUserToDb(data.user);
+        // const loggedUser = {
+        //   email: data?.user?.email,
+        //   name: data?.user?.displayName,
+        //   role: "student",
+        // };
+        // fetch("http://localhost:5000/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(loggedUser),
+        // })
+        //   .then((res) => res.json())
+        //   .then((result) => {
+        //     console.log("user posted to db", result);
+        //   });
       })
       .catch((err) => console.log(err.message));
   };
