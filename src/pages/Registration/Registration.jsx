@@ -27,23 +27,6 @@ const Registration = () => {
             console.log("user updated", data);
             // save user to db
             saveUserToDb(data);
-            // const user = {
-            //   email: data?.email,
-            //   name: data?.name,
-            //   role: "student",
-            // };
-            // console.log(user);
-            // fetch("http://localhost:5000/users", {
-            //   method: "POST",
-            //   headers: {
-            //     "content-type": "application/json",
-            //   },
-            //   body: JSON.stringify(user),
-            // })
-            //   .then((res) => res.json())
-            //   .then((result) => {
-            //     console.log("user posted to db", result);
-            //   });
           })
           .catch(() => {});
       })

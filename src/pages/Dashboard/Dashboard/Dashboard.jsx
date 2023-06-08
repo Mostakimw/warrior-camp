@@ -4,6 +4,8 @@ import InstructorDashboard from "./InstructorDashboard";
 import { FaHome } from "react-icons/fa";
 
 const Dashboard = () => {
+  const isAdmin = true;
+  const isInstructor = false;
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -20,10 +22,10 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 font-semibold h-full bg-[#848C2F] text-gray-100">
+          <ul className="menu p-4 w-80 font-semibold h-full bg-[#848C2F] ">
             {/* Sidebar content here */}
-            <AdminDashboard />
-            <InstructorDashboard />
+            {isAdmin && <AdminDashboard />}
+            {isInstructor && <InstructorDashboard />}
             <div className="divider"></div>
             <li>
               <Link to="/">

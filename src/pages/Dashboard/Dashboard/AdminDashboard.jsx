@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { MdFlightClass } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi";
 
@@ -6,16 +6,16 @@ const AdminDashboard = () => {
   return (
     <>
       <li>
-        <Link to="/dashboard/manage-classes">
+        <NavLink to="/dashboard/manage-classes">
           <MdFlightClass className="text-[#FCC044] text-2xl" />
           Manage Classes
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/dashboard/manage-users">
+        <NavLink to="/dashboard/manage-users">
           <HiUserGroup className="text-[#FCC044] text-2xl" />
           Manage Users
-        </Link>
+        </NavLink>
       </li>
     </>
   );

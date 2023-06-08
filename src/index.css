@@ -5,3 +5,20 @@
 .add-class-input {
   @apply border-2 border-yellow-500 block outline-none hover:outline-[#848C2F] rounded-md ring-offset-1 ring ring-yellow-400 mt-2 px-2;
 }
+
+.drawer-side a {
+  background-color: transparent;
+  @apply text-gray-100;
+}
+
+.drawer-side a.active {
+  color: #fcc044;
+}
+.my-nav a {
+  background-color: transparent;
+  font-weight: 600;
+}
+
+.my-nav a.active {
+  color: #fcc044;
+}

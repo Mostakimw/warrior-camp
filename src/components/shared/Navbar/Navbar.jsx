@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Container from "../../Container";
 import { useAuth } from "../../../hooks/useAuth";
 
@@ -15,13 +15,13 @@ const Navbar = () => {
   const menuItem = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <NavLink to="/instructors">Instructors</NavLink>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <NavLink to="/classes">Classes</NavLink>
       </li>
     </>
   );
@@ -97,10 +97,10 @@ const Navbar = () => {
             WarriorCamp
           </a>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex my-nav">
           <ul className="menu menu-horizontal px-1">{menuItem}</ul>
         </div>
-        <div className="navbar-end">{userMenu}</div>
+        <div className="navbar-end my-nav">{userMenu}</div>
       </div>
     </Container>
   );

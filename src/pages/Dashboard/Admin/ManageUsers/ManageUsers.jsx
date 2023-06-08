@@ -57,7 +57,7 @@ const ManageUsers = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Email</th>
-              <th className="pl-20">Role</th>
+              <th className="pl-[82px] lg:pl-[100px]">Role</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -79,14 +79,14 @@ const ManageUsers = () => {
                 </td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>
+                <td className=" flex flex-col items-center justify-center">
                   {user?.role == "admin" && (
-                    <span className="pl-16 text-success font-semibold">
+                    <span className="text-success font-semibold pt-4">
                       Admin
                     </span>
                   )}
                   {user?.role == "instructor" && (
-                    <span className="pl-16 text-info font-semibold">
+                    <span className=" text-center text-info font-semibold pt-4">
                       Instructor
                     </span>
                   )}
@@ -94,7 +94,7 @@ const ManageUsers = () => {
                     <>
                       <button
                         onClick={() => handleRole("admin", user._id)}
-                        className="btn w-40 btn-xs"
+                        className="btn w-40 btn-xs block"
                       >
                         Make An Admin
                       </button>
