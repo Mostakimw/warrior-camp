@@ -4,8 +4,8 @@ import InstructorDashboard from "./InstructorDashboard";
 import { FaHome } from "react-icons/fa";
 
 const Dashboard = () => {
-  const isAdmin = true;
-  const isInstructor = false;
+  const isAdmin = false;
+  const isInstructor = true;
   return (
     <div>
       <div className="drawer lg:drawer-open">

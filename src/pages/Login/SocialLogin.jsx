@@ -1,9 +1,14 @@
 import { FaGoogle } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
 import { saveUserToDb } from "../../api/Auth";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
   const handleGoogleLogin = () => {
     console.log("google clicked");
     googleLogin()
@@ -11,6 +16,7 @@ const SocialLogin = () => {
         console.log(data.user);
         // save user to db
         saveUserToDb(data.user);
+        navigate(from, { replace: true });
       })
       .catch((err) => console.log(err.message));
   };

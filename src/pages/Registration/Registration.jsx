@@ -1,11 +1,15 @@
 import { useForm } from "react-hook-form";
 import SocialLogin from "../Login/SocialLogin";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { saveUserToDb } from "../../api/Auth";
 
 const Registration = () => {
   const { user, createUser, updateUserProfile } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   if (user) {
     console.log("user created");
   }
@@ -27,6 +31,7 @@ const Registration = () => {
             console.log("user updated", data);
             // save user to db
             saveUserToDb(data);
+            navigate(from, { replace: true });
           })
           .catch(() => {});
       })
