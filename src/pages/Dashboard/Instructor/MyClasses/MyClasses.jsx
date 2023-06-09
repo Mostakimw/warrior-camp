@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../../components/SectionTitle";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useAuth } from "../../../../hooks/useAuth";
@@ -23,7 +22,7 @@ const MyClasses = () => {
   //     });
   // }, [user]);
 
-  const { data: classes = [], refetch } = useQuery({
+  const { data: classes = [] } = useQuery({
     queryKey: ["classes", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/classes?email=${user?.email}`);

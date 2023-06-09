@@ -1,6 +1,5 @@
 const ClassesCard = ({ singleClass }) => {
   const {
-    _id,
     classThumbnail,
     className,
     instructorName,

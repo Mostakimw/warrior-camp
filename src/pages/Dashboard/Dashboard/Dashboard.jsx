@@ -2,10 +2,12 @@ import { Link, Outlet } from "react-router-dom";
 import AdminDashboard from "./AdminDashboard";
 import InstructorDashboard from "./InstructorDashboard";
 import { FaHome } from "react-icons/fa";
+import StudentDashboard from "./StudentDashboard";
 
 const Dashboard = () => {
   const isAdmin = true;
   const isInstructor = true;
+  const isStudent = true;
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -26,6 +28,7 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             {isAdmin && <AdminDashboard />}
             {isInstructor && <InstructorDashboard />}
+            {isStudent && <StudentDashboard />}
             <div className="divider"></div>
             <li>
               <Link to="/">

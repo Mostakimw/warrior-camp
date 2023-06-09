@@ -13,6 +13,9 @@ import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
 import MyClasses from "../pages/Dashboard/Instructor/MyClasses/MyClasses";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import UpdateClass from "../pages/Dashboard/Instructor/UpdateClass/UpdateClass";
+import SelectedClass from "../pages/Dashboard/Student/SelectedClass/SelectedClass";
+import MyEnrollment from "../pages/Dashboard/Student/MyEnrollMent/MyEnrollment";
+import PaymentHistory from "../pages/Dashboard/Student/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +81,19 @@ const router = createBrowserRouter([
         element: <UpdateClass></UpdateClass>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/classes/${params.id}`),
+      },
+      // students
+      {
+        path: "selected-class",
+        element: <SelectedClass />,
+      },
+      {
+        path: "enrollment",
+        element: <MyEnrollment />,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory />,
       },
     ],
   },
