@@ -3,22 +3,33 @@ import SectionTitle from "../../../../components/SectionTitle";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useAuth } from "../../../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MyClasses = () => {
   const { user } = useAuth();
-  const [classes, setClasses] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/classes/instructor?email=${user?.email}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setClasses(data);
-      });
-  }, [user]);
+  const [axiosSecure] = useAxiosSecure();
+  // const [classes, setClasses] = useState([]);
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/classes/instructor?email=${user?.email}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setClasses(data);
+  //     });
+  // }, [user]);
+
+  const { data: classes = [], refetch } = useQuery({
+    queryKey: ["classes", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/classes?email=${user?.email}`);
+      return res.data;
+    },
+  });
   return (
     <div className="w-full">
       <SectionTitle title="All Classes" />
