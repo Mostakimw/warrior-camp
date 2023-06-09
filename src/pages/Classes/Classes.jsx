@@ -11,7 +11,7 @@ const Classes = () => {
       <div>
         {classes.map((singleClass) => (
           <ClassesCard
-            key={singleClass.className}
+            key={singleClass._id}
             singleClass={singleClass}
           ></ClassesCard>
         ))}

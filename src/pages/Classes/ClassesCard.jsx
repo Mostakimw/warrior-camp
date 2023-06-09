@@ -1,12 +1,17 @@
 const ClassesCard = ({ singleClass }) => {
   const {
-    image,
+    _id,
+    classThumbnail,
     className,
     instructorName,
     availableSeats,
     price,
     description,
   } = singleClass;
+  // TODO: have to work with select btn
+  const handleSelect = () => {
+    console.log("selected");
+  };
   return (
     <div
       style={{
@@ -22,12 +27,20 @@ const ClassesCard = ({ singleClass }) => {
         <p className="text-gray-200">Available Seats: {availableSeats}</p>
         <p className="text-gray-200">Price: {price}</p>
         <p className="mt-4">{description}</p>
+        <div className=" mt-6">
+          <button
+            onClick={handleSelect}
+            className="btn btn-outline text-2l tracking-widest w-full text-gray-100 border-2 border-white hover:bg-[#FCC044]  duration-300 hover:border-none"
+          >
+            Select
+          </button>
+        </div>
       </div>
       <div className="flex justify-center">
         <img
           className="px-4 rounded-md overflow-hidden"
           style={{ borderRadius: "8px" }}
-          src={image}
+          src={classThumbnail}
           alt="Course"
         />
       </div>

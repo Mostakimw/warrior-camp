@@ -8,7 +8,11 @@ const MyClasses = () => {
   const { user } = useAuth();
   const [classes, setClasses] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/classes/instructor?email=${user?.email}`)
+    fetch(`http://localhost:5000/classes/instructor?email=${user?.email}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

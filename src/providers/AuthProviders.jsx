@@ -53,6 +53,20 @@ const AuthProviders = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log(currentUser);
+      if (currentUser?.email) {
+        fetch(`${import.meta.env.VITE_API_LINK}/jwt`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: currentUser?.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("access-token", data.token);
+          });
+      }
       setLoading(false);
     });
     return () => {

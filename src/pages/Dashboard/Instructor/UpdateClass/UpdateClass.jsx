@@ -90,6 +90,7 @@ const UpdateClass = () => {
             name="userName"
             value={userName}
             className="w-2/3 py-2 add-class-input"
+            readOnly
           />
         </div>
         <div>
@@ -99,6 +100,7 @@ const UpdateClass = () => {
             name="email"
             value={email}
             className="w-2/3 py-2 add-class-input"
+            readOnly
           />
         </div>
 
