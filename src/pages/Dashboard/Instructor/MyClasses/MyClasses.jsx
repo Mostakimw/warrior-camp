@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../../../../components/SectionTitle";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useAuth } from "../../../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const MyClasses = () => {
   const { user } = useAuth();
@@ -13,16 +14,7 @@ const MyClasses = () => {
         console.log(data);
         setClasses(data);
       });
-  }, []);
-  // TODO: have to use tanstack and refetch
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/users")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setUsers(data);
-  //     });
-  // }, []);
+  }, [user]);
   return (
     <div className="w-full">
       <SectionTitle title="All Classes" />
@@ -59,15 +51,27 @@ const MyClasses = () => {
                     </div>
                   </div>
                 </td>
-                <td>{singleClass.className}</td>
-                <td>{singleClass.price}</td>
-                <td>seat</td>
-                <td>todo</td>
+                <td>{singleClass?.className}</td>
+                <td>{singleClass?.price}</td>
+                <td>{singleClass?.availableSeats}</td>
+                <td>
+                  {singleClass?.status == "approved" && (
+                    <span className="text-success uppercase">Approved</span>
+                  )}
+                  {singleClass?.status == "denied" && (
+                    <span className="text-error uppercase">Denied</span>
+                  )}
+                  {singleClass?.status == "pending" && (
+                    <span className="text-info uppercase">Pending</span>
+                  )}
+                </td>
                 <td>feedback</td>
                 <td>
-                  <button className="btn  btn-xs">
-                    <FaEdit className="text-error text-2xl" />
-                  </button>
+                  <Link to={`/dashboard/update-class/${singleClass._id}`}>
+                    <button className="btn  btn-xs">
+                      <FaEdit className="text-error text-2xl" />
+                    </button>
+                  </Link>
                 </td>
                 <td>
                   <button className="btn  btn-xs">

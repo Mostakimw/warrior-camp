@@ -11,6 +11,8 @@ import ManageClasses from "../pages/Dashboard/Admin/ManageClasses/ManageClasses"
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
 import MyClasses from "../pages/Dashboard/Instructor/MyClasses/MyClasses";
+import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import UpdateClass from "../pages/Dashboard/Instructor/UpdateClass/UpdateClass";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "my-profile",
+        element: <MyProfile />,
+      },
+      {
         path: "manage-classes",
         element: <ManageClasses />,
       },
@@ -62,6 +68,16 @@ const router = createBrowserRouter([
       {
         path: "my-classes",
         element: <MyClasses />,
+      },
+      {
+        // path: "update-class/:id",
+        // element: <UpdateClass />,
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/update-class/${params.id}`),
+        path: "update-class/:id",
+        element: <UpdateClass></UpdateClass>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/classes/${params.id}`),
       },
     ],
   },

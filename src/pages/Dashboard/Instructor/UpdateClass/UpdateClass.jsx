@@ -1,39 +1,46 @@
 import Swal from "sweetalert2";
 import SectionTitle from "../../../../components/SectionTitle";
-import { useAuth } from "../../../../hooks/useAuth";
+import { useLoaderData } from "react-router-dom";
 
-const AddClass = () => {
-  const { user } = useAuth();
-
+const UpdateClass = () => {
+  const classDataOld = useLoaderData();
+  const {
+    _id,
+    className,
+    classThumbnail,
+    price,
+    availableSeats,
+    description,
+    email,
+    userName,
+  } = classDataOld;
+  console.log(className);
+  console.log("old class data", classDataOld);
   // handle submit form
   const handleSubmitForm = (event) => {
     event.preventDefault();
     const form = event.target;
     const className = form.className.value;
     const classThumbnail = form.classThumbnail.value;
-    const email = form.email.value;
-    const userName = form.userName.value;
     const price = form.price.value;
     const availableSeats = form.availableSeats.value;
     const description = form.description.value;
 
     const classData = {
+      _id,
       className,
       classThumbnail,
-      email,
-      userName,
       price,
       availableSeats,
       description,
-      status: "pending",
     };
 
     console.log(classData);
 
-    // posting classdata to db
+    // updating class data to db
 
-    fetch("http://localhost:5000/classes", {
-      method: "POST",
+    fetch(`http://localhost:5000/classes/${_id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
@@ -42,18 +49,18 @@ const AddClass = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             icon: "success",
             title: "Great...",
-            text: "Your class has been added!",
+            text: "Your class has been updated!",
           });
         }
       });
   };
   return (
     <div className="w-full px-10">
-      <SectionTitle title="Add Your Class"></SectionTitle>
+      <SectionTitle title="Update This Class"></SectionTitle>
       <form
         onSubmit={handleSubmitForm}
         className="grid grid-cols-2 gap-4 my-10 p-16 bg-red-100 rounded-md shadow-lg w-full"
@@ -64,6 +71,7 @@ const AddClass = () => {
             type="text"
             name="className"
             className="w-2/3 py-2 add-class-input "
+            defaultValue={className}
           />
         </div>
         <div>
@@ -72,6 +80,7 @@ const AddClass = () => {
             type="text"
             name="classThumbnail"
             className="w-2/3 py-2 add-class-input"
+            defaultValue={classThumbnail}
           />
         </div>
         <div>
@@ -79,7 +88,7 @@ const AddClass = () => {
           <input
             type="text"
             name="userName"
-            defaultValue={user?.displayName}
+            value={userName}
             className="w-2/3 py-2 add-class-input"
           />
         </div>
@@ -88,7 +97,7 @@ const AddClass = () => {
           <input
             type="text"
             name="email"
-            defaultValue={user?.email}
+            value={email}
             className="w-2/3 py-2 add-class-input"
           />
         </div>
@@ -99,6 +108,7 @@ const AddClass = () => {
             type="number"
             name="price"
             className="w-2/3 py-2 add-class-input"
+            defaultValue={price}
           />
         </div>
         <div>
@@ -107,6 +117,7 @@ const AddClass = () => {
             type="number"
             name="availableSeats"
             className="w-2/3 py-2 add-class-input"
+            defaultValue={availableSeats}
           />
         </div>
         <div className="col-span-2">
@@ -117,6 +128,7 @@ const AddClass = () => {
             className="w-2/3 py-2 add-class-input"
             rows={5}
             cols={5}
+            defaultValue={description}
           />
         </div>
         <div className="w-1/3 mx-auto mt-8 pb-6 col-span-2">
@@ -127,4 +139,4 @@ const AddClass = () => {
   );
 };
 
-export default AddClass;
+export default UpdateClass;
