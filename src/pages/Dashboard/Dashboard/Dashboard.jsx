@@ -3,11 +3,22 @@ import AdminDashboard from "./AdminDashboard";
 import InstructorDashboard from "./InstructorDashboard";
 import { FaHome } from "react-icons/fa";
 import StudentDashboard from "./StudentDashboard";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
+import { useAuth } from "../../../hooks/useAuth";
 
 const Dashboard = () => {
-  const isAdmin = false;
-  const isInstructor = false;
-  const isStudent = true;
+  const { logoutUser } = useAuth();
+
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {})
+      .catch(() => {});
+  };
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isInstructor, isInstructorLoading] = useInstructor();
+  console.log(isAdmin, "instructor", isInstructor);
+  // console.log(is);
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -29,15 +40,34 @@ const Dashboard = () => {
               <h1 className="bg-yellow-500 ">Warrior camp</h1>
             </li>
             {/* Sidebar content here */}
-            {isAdmin && <AdminDashboard />}
-            {isInstructor && <InstructorDashboard />}
-            {isStudent && <StudentDashboard />}
+            {/* {isAdmin ? <AdminDashboard /> : <StudentDashboard />}
+            {isInstructor ? <InstructorDashboard /> : <StudentDashboard />} */}
+            {!isAdminLoading && !isInstructorLoading && (
+              <>
+                {isAdmin ? (
+                  <AdminDashboard />
+                ) : isInstructor ? (
+                  <InstructorDashboard />
+                ) : (
+                  <StudentDashboard />
+                )}
+              </>
+            )}
+
             <div className="divider"></div>
             <li>
               <Link to="/">
                 <FaHome className="text-[#FCC044] text-2xl" />
                 Home
               </Link>
+            </li>
+            <li>
+              <button
+                onClick={handleLogout}
+                className="btn pt-4 mt-8 hover:text-gray-100"
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </div>

@@ -12,9 +12,10 @@ const Profile = () => {
       <div className="w-full text-center my-5">
         <NavLink
           to="/dashboard/my-profile"
-          className=" underline  text-2xl  text-gray-100"
+          className="underline block text-2xl text-gray-100"
         >
-          {user?.displayName}
+          {/* {user?.displayName} */}
+          Hello
         </NavLink>
         <h2 className=" underline mt-2 text-gray-100">{user?.email}</h2>
       </div>

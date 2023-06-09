@@ -2,13 +2,13 @@ import { NavLink } from "react-router-dom";
 import { BiSelectMultiple } from "react-icons/bi";
 import { CgEreader } from "react-icons/cg";
 import { MdPayment } from "react-icons/md";
-// import Profile from "./Profile";
+import Profile from "./Profile";
 
 const StudentDashboard = () => {
   return (
     <>
+      <Profile />
       <li>
-        {/* <Profile /> */}
         <NavLink to="/dashboard/selected-class">
           <BiSelectMultiple className="text-[#FCC044] text-2xl" />
           Selected Classes
