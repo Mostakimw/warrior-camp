@@ -14,8 +14,6 @@ const UpdateClass = () => {
     email,
     userName,
   } = classDataOld;
-  console.log(className);
-  console.log("old class data", classDataOld);
   // handle submit form
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -35,8 +33,6 @@ const UpdateClass = () => {
       description,
     };
 
-    console.log(classData);
-
     // updating class data to db
 
     fetch(`http://localhost:5000/classes/${_id}`, {
@@ -48,7 +44,6 @@ const UpdateClass = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           Swal.fire({
             icon: "success",

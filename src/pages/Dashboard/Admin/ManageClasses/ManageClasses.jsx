@@ -1,13 +1,10 @@
-import { FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../../components/SectionTitle";
 import useClasses from "../../../../hooks/useClasses";
 
 const ManageClasses = () => {
   const classes = useClasses();
-  console.log(classes);
 
   const handleStatus = (status, id) => {
-    console.log(status, id);
     fetch(`http://localhost:5000/classes/${id}/status`, {
       method: "PUT",
       headers: {
@@ -20,6 +17,7 @@ const ManageClasses = () => {
         console.log(data);
       });
   };
+
   return (
     <div className="w-full">
       <SectionTitle title="All Classes" />
@@ -37,7 +35,6 @@ const ManageClasses = () => {
               <th>Available Seats</th>
               <th>Price</th>
               <th>Status</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -92,11 +89,6 @@ const ManageClasses = () => {
                       </button>
                     </>
                   )}
-                </td>
-                <td>
-                  <button className="btn  btn-xs">
-                    <FaTrashAlt className="text-error text-2xl" />
-                  </button>
                 </td>
               </tr>
             ))}

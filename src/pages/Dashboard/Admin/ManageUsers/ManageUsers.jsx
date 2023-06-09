@@ -1,23 +1,19 @@
 import { FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../../components/SectionTitle";
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const ManageUsers = () => {
-  const [users, setUsers] = useState([]);
-  // TODO: have to use tanstack and refetch
-  useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setUsers(data);
-      });
-  }, []);
+  const [axiosSecure] = useAxiosSecure();
+
+  const { data: users = [], refetch } = useQuery(["users"], async () => {
+    const res = await axiosSecure.get("/users");
+    return res.data;
+  });
 
   // ! handle admin and instructor making
   const handleRole = (role, id) => {
-    console.log(role, id);
     Swal.fire({
       title: "Are you sure?",
       text: `You want to make this Person ${role}?`,
@@ -28,18 +24,37 @@ const ManageUsers = () => {
       confirmButtonText: "Yes!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}/role`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ role }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-          });
-        Swal.fire("Done!", `This is person is now ${role}.`, "success");
+        axiosSecure.put(`/users/${id}/role`, { role }).then((response) => {
+          const data = response.data;
+          if (data.modifiedCount > 0) {
+            refetch();
+            Swal.fire("Done!", `This is person is now ${role}.`, "success");
+          }
+        });
+      }
+    });
+  };
+
+  // delete user
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You want to remove this Person?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user._id}`).then((response) => {
+          const data = response.data;
+          console.log(data);
+          if (data.deletedCount > 0) {
+            refetch();
+            Swal.fire("Deleted!", `This is person is now removed.`, "success");
+          }
+        });
       }
     });
   };
@@ -70,15 +85,15 @@ const ManageUsers = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src={user.image}
+                          src={user?.image}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </div>
                   </div>
                 </td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
+                <td>{user?.name}</td>
+                <td>{user?.email}</td>
                 <td className=" flex flex-col items-center justify-center">
                   {user?.role == "admin" && (
                     <span className="text-success font-semibold pt-4">
@@ -93,13 +108,13 @@ const ManageUsers = () => {
                   {user?.role == "student" && (
                     <>
                       <button
-                        onClick={() => handleRole("admin", user._id)}
+                        onClick={() => handleRole("admin", user?._id)}
                         className="btn w-40 btn-xs block"
                       >
                         Make An Admin
                       </button>
                       <button
-                        onClick={() => handleRole("instructor", user._id)}
+                        onClick={() => handleRole("instructor", user?._id)}
                         className="btn w-40 btn-xs block mt-2"
                       >
                         Make An Instructor
@@ -107,11 +122,14 @@ const ManageUsers = () => {
                     </>
                   )}
                 </td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">
+                <td>
+                  <button
+                    onClick={() => handleDeleteUser(user)}
+                    className="btn btn-ghost btn-xs"
+                  >
                     <FaTrashAlt className="text-error text-2xl" />
                   </button>
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>

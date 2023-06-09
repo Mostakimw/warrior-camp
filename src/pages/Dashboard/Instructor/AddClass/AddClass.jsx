@@ -28,8 +28,6 @@ const AddClass = () => {
       status: "pending",
     };
 
-    console.log(classData);
-
     // posting classdata to db
 
     fetch("http://localhost:5000/classes", {
@@ -41,7 +39,6 @@ const AddClass = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             icon: "success",

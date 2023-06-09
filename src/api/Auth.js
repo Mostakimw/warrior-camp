@@ -5,7 +5,6 @@ export const saveUserToDb = (user) => {
     image: user?.photoURL || user?.photoUrl,
     role: "student",
   };
-  console.log(user);
   fetch("http://localhost:5000/users", {
     method: "POST",
     headers: {

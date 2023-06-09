@@ -7,9 +7,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logoutUser()
-      .then(() => {
-        console.log("logout success");
-      })
+      .then(() => {})
       .catch(() => {});
   };
   const menuItem = (

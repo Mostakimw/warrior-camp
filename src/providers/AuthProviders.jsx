@@ -52,7 +52,6 @@ const AuthProviders = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
       if (currentUser?.email) {
         fetch(`${import.meta.env.VITE_API_LINK}/jwt`, {
           method: "POST",
@@ -63,9 +62,10 @@ const AuthProviders = ({ children }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("access-token", data.token);
           });
+      } else {
+        localStorage.removeItem("access-token");
       }
       setLoading(false);
     });

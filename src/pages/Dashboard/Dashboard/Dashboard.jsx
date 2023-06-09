@@ -5,8 +5,8 @@ import { FaHome } from "react-icons/fa";
 import StudentDashboard from "./StudentDashboard";
 
 const Dashboard = () => {
-  const isAdmin = true;
-  const isInstructor = true;
+  const isAdmin = false;
+  const isInstructor = false;
   const isStudent = true;
   return (
     <div>
@@ -25,6 +25,9 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 font-semibold h-full bg-[#848C2F] ">
+            <li>
+              <h1 className="bg-yellow-500 ">Warrior camp</h1>
+            </li>
             {/* Sidebar content here */}
             {isAdmin && <AdminDashboard />}
             {isInstructor && <InstructorDashboard />}

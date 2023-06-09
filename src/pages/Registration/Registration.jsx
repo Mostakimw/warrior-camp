@@ -21,23 +21,17 @@ const Registration = () => {
 
   // ! registration form submit handler
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data?.email, data?.password)
-      .then((result) => {
-        console.log("registration success", result.user);
-        console.log(data?.name);
+      .then(() => {
         updateUserProfile(data?.name, data?.photoUrl)
           .then(() => {
-            console.log("user updated", data);
             // save user to db
             saveUserToDb(data);
             navigate(from, { replace: true });
           })
           .catch(() => {});
       })
-      .catch((error) => {
-        console.log("error on registration", error.message);
-      });
+      .catch(() => {});
   };
   return (
     <div>
