@@ -30,11 +30,11 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label
               tabIndex={0}
-              className="text-gray-800 bg-gray-100 hover:cursor-pointer hover:border-2  transition-all duration-300"
+              className="text-gray-800 bg-gray-100 hover:cursor-pointer"
             >
               <img
                 src={user?.photoURL}
-                className="rounded-full h-10 w-10 mr-4"
+                className="inline-flex items-center justify-center w-12 h-12 mr-2 text-white transition-all duration-200 rounded-full"
                 alt=""
                 title={user?.displayName}
               />
