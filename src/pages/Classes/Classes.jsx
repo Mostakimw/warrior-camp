@@ -7,7 +7,6 @@ const Classes = () => {
   return (
     <div>
       <SectionTitle title="All Classes"></SectionTitle>
-      <h1>all classes</h1>
       <div>
         {classes.map((singleClass) => (
           <ClassesCard

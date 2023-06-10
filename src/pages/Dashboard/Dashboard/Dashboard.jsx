@@ -17,8 +17,6 @@ const Dashboard = () => {
   };
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
-  console.log(isAdmin, "instructor", isInstructor);
-  // console.log(is);
   return (
     <div>
       <div className="drawer lg:drawer-open">
