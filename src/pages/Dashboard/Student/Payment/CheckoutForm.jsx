@@ -5,6 +5,7 @@ import { useAuth } from "../../../../hooks/useAuth";
 import { useEffect } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
+import { ImSpinner9 } from "react-icons/im";
 
 const CheckoutForm = ({ classData }) => {
   const { user } = useAuth();
@@ -14,13 +15,11 @@ const CheckoutForm = ({ classData }) => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
-  console.log(clientSecret);
   // for getting client secret
   useEffect(() => {
     axiosSecure
       .post("/create-payment-intent", { price: classData?.price })
       .then((res) => {
-        console.log(res.data);
         setClientSecret(res?.data?.clientSecret);
       });
   }, [axiosSecure, classData?.price]);
@@ -74,13 +73,28 @@ const CheckoutForm = ({ classData }) => {
       axiosSecure
         .post("/enroll", enrollmentInfo)
         .then((res) => {
-          console.log(res.data);
           if (res.data.insertedId) {
             setProcessing(false);
             toast.success("Payment success");
+            //update the class data for seats and enrollment
+
+            const classIdForUpdate = enrollmentInfo?.courseId;
+            console.log(classIdForUpdate);
+            axiosSecure
+              .patch(`/classes/${classIdForUpdate}`)
+              .then((res) => {
+                console.log("seat updated", res.data);
+              })
+              .catch(() => {});
+            // Delete the selected class from the enrollment collection
+            const courseIdToDelete = enrollmentInfo._id;
+            axiosSecure
+              .delete(`/selected-classes/${courseIdToDelete}`)
+              .then(() => {})
+              .catch(() => {});
           }
         })
-        .catch((err) => console.log(err));
+        .catch(() => {});
     }
   };
 
@@ -105,13 +119,17 @@ const CheckoutForm = ({ classData }) => {
         />
         <button
           type="submit"
-          className="btn px-8 py-2 text-white font-semibold btn-info mx-auto"
+          className="btn px-8 py-2 text-xl text-white font-semibold btn-info mx-auto"
           disabled={!stripe || !clientSecret || processing}
         >
-          Pay
+          {processing ? (
+            <ImSpinner9 className="m-auto animate-spin" size={24} />
+          ) : (
+            `Pay ${classData?.price}$`
+          )}
         </button>
       </form>
-      <p className="text-error">{cardError}</p>
+      <p className="text-error mt-5">{cardError}</p>
     </>
   );
 };

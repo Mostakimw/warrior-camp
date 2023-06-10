@@ -6,6 +6,7 @@ import StudentDashboard from "./StudentDashboard";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
 import { useAuth } from "../../../hooks/useAuth";
+import Admin from "../Admin/Admin/Admin";
 
 const Dashboard = () => {
   const { logoutUser } = useAuth();
@@ -23,6 +24,7 @@ const Dashboard = () => {
         <input type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center w-[90%] mx-auto">
           {/* Page content here */}
+          <Admin />
           <Outlet />
           <label
             htmlFor="my-drawer-2"
