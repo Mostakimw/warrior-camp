@@ -31,7 +31,7 @@ const ClassesCard = ({ singleClass }) => {
     };
     if (selectedClasses?.email) {
       axiosSecure
-        .post("/selected-classes", { selectedClasses })
+        .post("/selected-classes", selectedClasses)
         .then((response) => {
           console.log(response);
           console.log(response.data);

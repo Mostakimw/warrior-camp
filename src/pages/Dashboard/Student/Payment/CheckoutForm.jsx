@@ -4,6 +4,7 @@ import "./CheckoutForm.css";
 import { useAuth } from "../../../../hooks/useAuth";
 import { useEffect } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
 
 const CheckoutForm = ({ classData }) => {
   const { user } = useAuth();
@@ -12,15 +13,12 @@ const CheckoutForm = ({ classData }) => {
   const elements = useElements();
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  console.log(clientSecret, classData?.price);
-  console.log("class data", classData);
+  const [processing, setProcessing] = useState(false);
   // for getting client secret
   useEffect(() => {
     axiosSecure
       .post("/create-payment-intent", { price: classData?.price })
       .then((res) => {
-        console.log("23 line");
-        console.log(res);
         setClientSecret(res.data.clientSecret);
       });
   }, [axiosSecure, classData?.price]);
@@ -51,12 +49,11 @@ const CheckoutForm = ({ classData }) => {
     });
 
     if (error) {
-      console.log("[error]", error);
       setCardError(error.message);
     } else {
       setCardError("");
     }
-    console.log("ashteche 53 line");
+    setProcessing(true);
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -68,10 +65,27 @@ const CheckoutForm = ({ classData }) => {
         },
       });
     if (confirmError) {
-      console.log("[error]", confirmError);
       setCardError(confirmError.message);
     }
-    console.log("[paymentIntent]", paymentIntent);
+    // ! store the enrolled classes in db
+
+    if (paymentIntent.status === "succeeded") {
+      const enrollmentInfo = {
+        ...classData,
+        transactionId: paymentIntent.id,
+        date: new Date(),
+      };
+      axiosSecure
+        .post("/enroll", enrollmentInfo)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            setProcessing(false);
+            toast.success("Payment success");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -96,7 +110,7 @@ const CheckoutForm = ({ classData }) => {
         <button
           type="submit"
           className="btn px-8 py-2 text-white font-semibold btn-info mx-auto"
-          disabled={!stripe}
+          disabled={!stripe || !clientSecret || processing}
         >
           Pay
         </button>
