@@ -4,6 +4,7 @@ import useSelectedClass from "../../../../hooks/useSelectedClass";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
   const [selectedClasses, refetch] = useSelectedClass();
@@ -32,23 +33,31 @@ const SelectedClass = () => {
         });
       }
     });
-    // axiosSecure.delete(`/selected-classes/${id}`).then((res) => {
-    //   refetch();
-    //   console.log(res.data);
-    // });
   };
   return (
     <div className="w-full">
       <SectionTitle title="Selected Classes" />
+      <div className="flex items-center justify-between mt-10">
+        <h1 className="font-semibold text-2xl">
+          Total Selected: {selectedClasses.length}
+        </h1>
+        <Link
+          to="/dashboard/selected-class/payment"
+          className="btn px-8 py-2 text-white font-semibold btn-info"
+        >
+          Pay
+        </Link>
+      </div>
 
-      <div className="overflow-x-auto mt-12 w-full">
+      <div className="overflow-x-auto mt-6 w-full">
         <table className="table">
           {/* head */}
           <thead className="bg-gray-800 text-white">
             <tr>
               <th>#</th>
               <th>Image</th>
-              <th>Name</th>
+              <th>Class Name</th>
+              <th>Instructor Name</th>
               <th>Enrolled Student</th>
               <th>Seats Available</th>
               <th>Delete</th>
@@ -71,6 +80,7 @@ const SelectedClass = () => {
                   </div>
                 </td>
                 <td>{singleClass?.className}</td>
+                <td>{singleClass?.userName}</td>
                 <td>{singleClass?.price}</td>
                 <td>{singleClass?.availableSeats}</td>
                 <td>
