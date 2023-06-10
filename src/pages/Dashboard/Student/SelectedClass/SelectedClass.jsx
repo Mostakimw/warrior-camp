@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
   const [selectedClasses, refetch] = useSelectedClass();
+  console.log(selectedClasses);
   const [axiosSecure] = useAxiosSecure();
   console.log(selectedClasses);
 
@@ -27,13 +28,19 @@ const SelectedClass = () => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
             refetch();
-            // Swal.fire("Done!", "Class Removed", "success");
             toast.success("Successfully Removed!");
           }
         });
       }
     });
   };
+
+  // const handlePay = (id) => {
+  //   console.log(id);
+  //   axiosSecure(`/selected-classes/${id}`).then((res) => {
+  //     console.log(res.data);
+  //   });
+  // };
   return (
     <div className="w-full">
       <SectionTitle title="Selected Classes" />
@@ -41,12 +48,6 @@ const SelectedClass = () => {
         <h1 className="font-semibold text-2xl">
           Total Selected: {selectedClasses.length}
         </h1>
-        <Link
-          to="/dashboard/selected-class/payment"
-          className="btn px-8 py-2 text-white font-semibold btn-info"
-        >
-          Pay
-        </Link>
       </div>
 
       <div className="overflow-x-auto mt-6 w-full">
@@ -61,6 +62,7 @@ const SelectedClass = () => {
               <th>Enrolled Student</th>
               <th>Seats Available</th>
               <th>Delete</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -90,6 +92,14 @@ const SelectedClass = () => {
                   >
                     <FaTrashAlt className="text-error text-2xl" />
                   </button>
+                </td>
+                <td>
+                  <Link
+                    to={`/dashboard/selected-class/payment/${singleClass._id}`}
+                    className="btn px-8 py-2 text-white font-semibold btn-info"
+                  >
+                    Pay
+                  </Link>
                 </td>
               </tr>
             ))}

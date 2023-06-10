@@ -52,6 +52,9 @@ const ClassesCard = ({ singleClass }) => {
   };
   return (
     <div
+      data-aos="fade-up"
+      data-aos-duration="1200"
+      data-aos-delay="200"
       style={{
         backgroundImage: "linear-gradient(90deg, #848C2F, #83881d)",
       }}

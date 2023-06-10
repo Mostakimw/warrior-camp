@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import SectionTitle from "../../../../components/SectionTitle";
 import { useAuth } from "../../../../hooks/useAuth";
+import shortid from "shortid";
 
 const AddClass = () => {
   const { user } = useAuth();
@@ -17,7 +18,10 @@ const AddClass = () => {
     const availableSeats = form.availableSeats.value;
     const description = form.description.value;
 
+    const courseId = shortid.generate();
+
     const classData = {
+      courseId,
       className,
       classThumbnail,
       email,
@@ -26,6 +30,7 @@ const AddClass = () => {
       availableSeats,
       description,
       status: "pending",
+      enroll: 0, // Set the initial value of enroll to 0
     };
 
     // posting classdata to db
