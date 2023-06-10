@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
   const [selectedClasses, refetch] = useSelectedClass();
+  console.log(selectedClasses);
   const [axiosSecure] = useAxiosSecure();
   const handleDeleteClass = (id) => {
     console.log("clicked");
