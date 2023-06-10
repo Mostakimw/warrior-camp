@@ -14,8 +14,8 @@ const AddClass = () => {
     const classThumbnail = form.classThumbnail.value;
     const email = form.email.value;
     const userName = form.userName.value;
-    const price = form.price.value;
-    const availableSeats = form.availableSeats.value;
+    const price = parseFloat(form.price.value);
+    const availableSeats = parseInt(form.availableSeats.value);
     const description = form.description.value;
 
     const courseId = shortid.generate();
@@ -30,7 +30,8 @@ const AddClass = () => {
       availableSeats,
       description,
       status: "pending",
-      enroll: 0, // Set the initial value of enroll to 0
+      enroll: 0,
+      isEnrolled: false,
     };
 
     // posting classdata to db

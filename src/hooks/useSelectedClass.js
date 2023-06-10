@@ -9,8 +9,6 @@ const useSelectedClass = () => {
     queryKey: ["selected-classes", user?.email],
     queryFn: async () => {
       const res = await axiosSecure(`selected-classes?email=${user?.email}`);
-      const data = res.data;
-      console.log("data from useselectedclass", data);
       return res.data;
     },
   });

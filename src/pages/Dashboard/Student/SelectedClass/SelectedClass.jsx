@@ -8,10 +8,7 @@ import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
   const [selectedClasses, refetch] = useSelectedClass();
-  console.log(selectedClasses);
   const [axiosSecure] = useAxiosSecure();
-  console.log(selectedClasses);
-
   const handleDeleteClass = (id) => {
     console.log("clicked");
     Swal.fire({
@@ -34,13 +31,6 @@ const SelectedClass = () => {
       }
     });
   };
-
-  // const handlePay = (id) => {
-  //   console.log(id);
-  //   axiosSecure(`/selected-classes/${id}`).then((res) => {
-  //     console.log(res.data);
-  //   });
-  // };
   return (
     <div className="w-full">
       <SectionTitle title="Selected Classes" />
@@ -83,7 +73,7 @@ const SelectedClass = () => {
                 </td>
                 <td>{singleClass?.className}</td>
                 <td>{singleClass?.userName}</td>
-                <td>{singleClass?.price}</td>
+                <td>${singleClass?.price}</td>
                 <td>{singleClass?.availableSeats}</td>
                 <td>
                   <button

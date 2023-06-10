@@ -19,9 +19,6 @@ const Classes = () => {
           <ClassesCard
             key={singleClass._id}
             singleClass={singleClass}
-            data-aos="fade-up"
-            data-aos-duration="1500"
-            data-aos-delay="200"
           ></ClassesCard>
         ))}
       </div>

@@ -9,6 +9,8 @@ const ClassesCard = ({ singleClass }) => {
   const [axiosSecure] = useAxiosSecure();
   const [disable, setDisable] = useState(false);
   const {
+    _id,
+    courseId,
     classThumbnail,
     className,
     userName,
@@ -20,34 +22,36 @@ const ClassesCard = ({ singleClass }) => {
   const handleSelect = () => {
     console.log(singleClass);
     const selectedClasses = {
+      _id,
+      courseId,
       classThumbnail,
       className,
       userName,
       availableSeats,
       price,
       description,
-      selected: true,
+      selected: false,
       email: email,
     };
-    if (selectedClasses?.email) {
-      axiosSecure
-        .post("/selected-classes", selectedClasses)
-        .then((response) => {
-          console.log(response);
-          console.log(response.data);
-          if (response.data.insertedId) {
-            Swal.fire("Done!", "You Select This Classes", "success");
-          }
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 409) {
-            Swal.fire("Error!", "This class is already selected", "error");
-          } else {
-            console.error(error);
-            Swal.fire("Error!", "An error occurred", "error");
-          }
-        });
-    }
+
+    axiosSecure
+      .post("/selected-classes", selectedClasses)
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+        if (response.data.insertedId) {
+          Swal.fire("Done!", "You Select This Classes", "success");
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 409) {
+          Swal.fire("Error!", "This class is already selected", "error");
+        } else {
+          console.error(error);
+          Swal.fire("Error!", "An error occurred", "error");
+        }
+      });
+
     console.log(selectedClasses);
   };
   return (
