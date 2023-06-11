@@ -4,31 +4,43 @@ import { useAuth } from "../../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const MyClasses = () => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  // const [classes, setClasses] = useState([]);
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/classes/instructor?email=${user?.email}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setClasses(data);
-  //     });
-  // }, [user]);
 
-  const { data: classes = [] } = useQuery({
+  const { data: classes = [], refetch } = useQuery({
     queryKey: ["classes", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/classes?email=${user?.email}`);
       return res.data;
     },
   });
+
+  const handleDelete = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You want to delete this class?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/classes/${id}`).then((response) => {
+          const data = response.data;
+          console.log(data);
+          if (data.deletedCount > 0) {
+            refetch();
+            Swal.fire("Deleted!", `This class has been deleted!.`, "success");
+          }
+        });
+      }
+    });
+  };
   return (
     <div className="w-full">
       <SectionTitle title="All Classes" />
@@ -88,7 +100,10 @@ const MyClasses = () => {
                   </Link>
                 </td>
                 <td>
-                  <button className="btn  btn-xs">
+                  <button
+                    onClick={() => handleDelete(singleClass._id)}
+                    className="btn  btn-xs"
+                  >
                     <FaTrashAlt className="text-error text-2xl" />
                   </button>
                 </td>

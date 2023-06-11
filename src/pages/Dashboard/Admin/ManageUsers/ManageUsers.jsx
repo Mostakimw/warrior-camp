@@ -52,7 +52,7 @@ const ManageUsers = () => {
           console.log(data);
           if (data.deletedCount > 0) {
             refetch();
-            Swal.fire("Deleted!", `This is person is now removed.`, "success");
+            Swal.fire("Deleted!", `This is now removed.`, "success");
           }
         });
       }

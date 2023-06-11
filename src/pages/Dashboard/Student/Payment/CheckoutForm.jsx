@@ -78,10 +78,10 @@ const CheckoutForm = ({ classData }) => {
             toast.success("Payment success");
             //update the class data for seats and enrollment
 
-            const classIdForUpdate = enrollmentInfo?.courseId;
-            console.log(classIdForUpdate);
+            const classIdForUpdate = enrollmentInfo?._id;
+            console.log("class id update", classIdForUpdate);
             axiosSecure
-              .patch(`/classes/${classIdForUpdate}`)
+              .patch(`/update-classes/${classIdForUpdate}`)
               .then((res) => {
                 console.log("seat updated", res.data);
               })
