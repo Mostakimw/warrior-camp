@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import InstructorCard from "./InstructorCard";
 import useInstructors from "../../hooks/useInstructors";
 
 const Instructors = () => {
-  const instructors = useInstructors();
+  const [instructors] = useInstructors();
   return (
     <div>
       <SectionTitle title="Our Instructors"></SectionTitle>

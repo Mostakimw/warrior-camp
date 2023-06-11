@@ -5,9 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 const useInstructors = () => {
   const [axiosSecure] = useAxiosSecure();
   const { data: instructors = [] } = useQuery({
-    queryKey: ["instructors"],
+    queryKey: ["classes"],
     queryFn: async () => {
-      const res = await axiosSecure("/instructors");
+      const res = await axiosSecure("/classes");
       return res.data;
     },
   });
