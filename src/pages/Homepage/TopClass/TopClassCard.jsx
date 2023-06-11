@@ -1,6 +1,6 @@
 import { FaArrowAltCircleRight } from "react-icons/fa";
 
-const ClassCard = ({ singleClass }) => {
+const TopClassCard = ({ singleClass }) => {
   const { image, className, availableSeats, price } = singleClass;
   return (
     <div className="max-w-2xl mx-auto h-[470px] ">
@@ -29,4 +29,4 @@ const ClassCard = ({ singleClass }) => {
   );
 };
 
-export default ClassCard;
+export default TopClassCard;

@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import useAxiosSecure from "./useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
+// it was for getting the instructors data from db
 const useInstructors = () => {
-  const [instructors, setInstructors] = useState([]);
-  useEffect(() => {
-    fetch("/instructor.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setInstructors(data);
-      });
-  }, []);
-  return instructors;
+  const [axiosSecure] = useAxiosSecure();
+  const { data: instructors = [] } = useQuery({
+    queryKey: ["instructors"],
+    queryFn: async () => {
+      const res = await axiosSecure("/instructors");
+      return res.data;
+    },
+  });
+  return [instructors];
 };
 
 export default useInstructors;

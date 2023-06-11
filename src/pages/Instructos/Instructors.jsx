@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import InstructorCard from "./InstructorCard";
 import useInstructors from "../../hooks/useInstructors";
