@@ -6,7 +6,8 @@ import AOS from "aos";
 import { useEffect } from "react";
 
 const Classes = () => {
-  const classes = useClasses();
+  const [classes] = useClasses();
+  console.log(classes);
 
   useEffect(() => {
     AOS.init();
@@ -14,6 +15,7 @@ const Classes = () => {
   return (
     <div>
       <SectionTitle title="All Classes"></SectionTitle>
+      <h1>class collectopn</h1>
       <div>
         {classes.map((singleClass) => (
           <ClassesCard

@@ -1,8 +1,9 @@
+import { toast } from "react-hot-toast";
 import SectionTitle from "../../../../components/SectionTitle";
 import useClasses from "../../../../hooks/useClasses";
 
 const ManageClasses = () => {
-  const classes = useClasses();
+  const [classes, refetch] = useClasses();
 
   const handleStatus = (status, id) => {
     fetch(`http://localhost:5000/classes/${id}/status`, {
@@ -15,6 +16,26 @@ const ManageClasses = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        refetch();
+        if (status === "approved") {
+          toast(`Class has been ${status}`, {
+            icon: "👏",
+            style: {
+              borderRadius: "10px",
+              background: "#848C2F",
+              color: "#fff",
+            },
+          });
+        } else if (status === "denied") {
+          toast(`Class has been ${status}`, {
+            icon: "👏",
+            style: {
+              borderRadius: "10px",
+              background: "#FF4545",
+              color: "#fff",
+            },
+          });
+        }
       });
   };
 

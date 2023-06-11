@@ -9,15 +9,15 @@ const StudentDashboard = () => {
     <>
       <Profile />
       <li>
-        <NavLink to="/dashboard/selected-class">
-          <BiSelectMultiple className="text-[#FCC044] text-2xl" />
-          Selected Classes
-        </NavLink>
-      </li>
-      <li>
         <NavLink to="/dashboard/enrollment">
           <CgEreader className="text-[#FCC044] text-2xl" />
           My Enrollment
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard/selected-class">
+          <BiSelectMultiple className="text-[#FCC044] text-2xl" />
+          Selected Classes
         </NavLink>
       </li>
       <li>

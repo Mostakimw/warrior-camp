@@ -70,7 +70,7 @@ const AddClass = () => {
           />
         </div>
         <div>
-          <label>Image URL:</label>
+          <label>Thumbnail URL:</label>
           <input
             type="text"
             name="classThumbnail"
@@ -105,7 +105,7 @@ const AddClass = () => {
           />
         </div>
         <div>
-          <label>Available Seats:</label>
+          <label>Seats:</label>
           <input
             type="number"
             name="availableSeats"

@@ -8,15 +8,15 @@ const AdminDashboard = () => {
     <>
       <Profile />
       <li>
-        <NavLink to="/dashboard/manage-classes">
-          <MdFlightClass className="text-[#FCC044] text-2xl" />
-          Manage Classes
-        </NavLink>
-      </li>
-      <li>
         <NavLink to="/dashboard/manage-users">
           <HiUserGroup className="text-[#FCC044] text-2xl" />
           Manage Users
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard/manage-classes">
+          <MdFlightClass className="text-[#FCC044] text-2xl" />
+          Manage Classes
         </NavLink>
       </li>
     </>
