@@ -38,7 +38,7 @@ const AddClass = () => {
 
     // posting classdata to db
 
-    fetch(`http://localhost:5000/classes`, {
+    fetch(`https://warrior-camp-server.vercel.app/classes`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
