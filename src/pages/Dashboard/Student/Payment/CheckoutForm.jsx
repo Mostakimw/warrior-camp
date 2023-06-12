@@ -79,12 +79,9 @@ const CheckoutForm = ({ classData }) => {
             //update the class data for seats and enrollment
 
             const classIdForUpdate = enrollmentInfo?._id;
-            console.log("class id update", classIdForUpdate);
             axiosSecure
               .patch(`/update-classes/${classIdForUpdate}`)
-              .then((res) => {
-                console.log("seat updated", res.data);
-              })
+              .then(() => {})
               .catch(() => {});
             // Delete the selected class from the enrollment collection
             const courseIdToDelete = enrollmentInfo._id;

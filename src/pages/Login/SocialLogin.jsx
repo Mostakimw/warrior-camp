@@ -10,15 +10,13 @@ const SocialLogin = () => {
 
   const from = location?.state?.from?.pathname || "/";
   const handleGoogleLogin = () => {
-    console.log("google clicked");
     googleLogin()
       .then((data) => {
-        console.log(data.user);
         // save user to db
         saveUserToDb(data.user);
         navigate(from, { replace: true });
       })
-      .catch((err) => console.log(err.message));
+      .catch(() => {});
   };
   return (
     <div>

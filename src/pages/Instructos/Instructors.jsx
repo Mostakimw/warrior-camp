@@ -10,7 +10,7 @@ const Instructors = () => {
       <div className="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {instructors.map((instructor) => (
           <InstructorCard
-            key={instructor.name}
+            key={instructor._id}
             instructor={instructor}
           ></InstructorCard>
         ))}

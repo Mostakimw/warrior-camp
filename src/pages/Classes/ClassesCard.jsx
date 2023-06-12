@@ -29,7 +29,6 @@ const ClassesCard = ({ singleClass }) => {
     }
   }, [availableSeats]);
   const handleSelect = () => {
-    console.log(singleClass);
     if (!user?.email) {
       Swal.fire({
         title: "Not Logged In!",
@@ -59,10 +58,8 @@ const ClassesCard = ({ singleClass }) => {
       };
 
       axiosSecure
-        .post("/classes", selectedClasses)
+        .post("/selected-classes", selectedClasses)
         .then((response) => {
-          console.log(response);
-          console.log(response.data);
           if (response.data.insertedId) {
             Swal.fire("Done!", "You Select This Classes", "success");
           }
@@ -71,12 +68,9 @@ const ClassesCard = ({ singleClass }) => {
           if (error.response && error.response.status === 409) {
             Swal.fire("Error!", "This class is already selected", "error");
           } else {
-            console.error(error);
             Swal.fire("Error!", "An error occurred", "error");
           }
         });
-
-      console.log(selectedClasses);
     }
   };
 

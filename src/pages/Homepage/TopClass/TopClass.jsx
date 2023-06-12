@@ -9,7 +9,6 @@ const TopClass = () => {
     queryKey: ["classes"],
     queryFn: async () => {
       const res = await axiosSecure(`/classes?limit=${6}&sortBy=enroll`);
-      console.log(res.data);
       return res.data;
     },
   });

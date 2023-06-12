@@ -3,13 +3,13 @@ import Container from "../../Container";
 import { useAuth } from "../../../hooks/useAuth";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
 
-  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
-  const [isStudent] = useInstructor();
 
   const handleLogout = () => {
     logoutUser()
@@ -51,7 +51,7 @@ const Navbar = () => {
             >
               <li>
                 {isAdmin ? (
-                  <Link to="/dashboard/manage-users" className="btn pt-4">
+                  <Link to="/dashboard/manage-classes" className="btn pt-4">
                     Dashboard
                   </Link>
                 ) : isInstructor ? (
@@ -63,16 +63,6 @@ const Navbar = () => {
                     Dashboard
                   </Link>
                 )}
-                {/* {isInstructor && (
-                  <Link to="/dashboard/my-classes" className="btn pt-4">
-                    Dashboard
-                  </Link>
-                )}
-                {isStudent && (
-                  <Link to="/dashboard/selected-class" className="btn pt-4">
-                    Dashboard
-                  </Link> */}
-                {/* )} */}
               </li>
               <li>
                 <button onClick={handleLogout} className="btn pt-4 mt-3">
@@ -91,7 +81,7 @@ const Navbar = () => {
   );
   return (
     <Container>
-      <div className="navbar bg-base-100 p-0">
+      <div className="navbar bg-[#F1F0F0] p-0 mb-10">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -118,7 +108,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="hover:cursor-pointer normal-case text-xl p-0">
-            WarriorCamp
+            <img src={logo} width={150} alt="" />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex my-nav">

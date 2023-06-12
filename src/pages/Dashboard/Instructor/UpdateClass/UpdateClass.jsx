@@ -35,7 +35,7 @@ const UpdateClass = () => {
 
     // updating class data to db
 
-    fetch(`http://localhost:5000/classes/${_id}`, {
+    fetch(`${import.meta.env.VITE_API_LINK}/classes/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

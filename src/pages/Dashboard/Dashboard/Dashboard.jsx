@@ -17,7 +17,6 @@ const Dashboard = () => {
   };
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
-  const [isStudent, isStudentLoading] = useInstructor();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -35,13 +34,18 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 font-semibold h-full bg-[#848C2F] ">
-            <li>
-              <h1 className="bg-yellow-500 ">Warrior camp</h1>
-            </li>
             {/* Sidebar content here */}
-            {/* {isAdmin ? <AdminDashboard /> : <StudentDashboard />}
-            {isInstructor ? <InstructorDashboard /> : <StudentDashboard />} */}
-            {isAdmin ? <AdminDashboard /> : <InstructorDashboard />}
+            {!isAdminLoading && !isInstructorLoading && (
+              <>
+                {isAdmin ? (
+                  <AdminDashboard />
+                ) : isInstructor ? (
+                  <InstructorDashboard />
+                ) : (
+                  <StudentDashboard />
+                )}
+              </>
+            )}
 
             <div className="divider"></div>
             <li>

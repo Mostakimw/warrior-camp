@@ -3,14 +3,15 @@ import { useAuth } from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
 const usePaymentHistory = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
 
   const { data: paymentHistory = [], refetch } = useQuery({
     queryKey: ["enroll", user?.email],
+    enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure(
-        `http://localhost:5000/enroll?email=${user?.email}`
+        `${import.meta.env.VITE_API_LINK}/enroll?email=${user?.email}`
       );
       return res.data;
     },

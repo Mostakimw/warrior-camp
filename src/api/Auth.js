@@ -5,7 +5,7 @@ export const saveUserToDb = (user) => {
     image: user?.photoURL || user?.photoUrl,
     role: "student",
   };
-  fetch("http://localhost:5000/users", {
+  fetch(`${import.meta.env.VITE_API_LINK}/users`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -13,7 +13,5 @@ export const saveUserToDb = (user) => {
     body: JSON.stringify(currentUser),
   })
     .then((res) => res.json())
-    .then((result) => {
-      console.log("user posted to db", result);
-    });
+    .then(() => {});
 };

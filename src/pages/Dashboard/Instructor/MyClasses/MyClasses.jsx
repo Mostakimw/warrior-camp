@@ -19,7 +19,6 @@ const MyClasses = () => {
   });
 
   const handleDelete = (id) => {
-    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: `You want to delete this class?`,
@@ -32,7 +31,6 @@ const MyClasses = () => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/classes/${id}`).then((response) => {
           const data = response.data;
-          console.log(data);
           if (data.deletedCount > 0) {
             refetch();
             Swal.fire("Deleted!", `This class has been deleted!.`, "success");

@@ -79,14 +79,10 @@ const router = createBrowserRouter([
         element: <MyClasses />,
       },
       {
-        // path: "update-class/:id",
-        // element: <UpdateClass />,
-        // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/update-class/${params.id}`),
         path: "update-class/:id",
         element: <UpdateClass></UpdateClass>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/classes/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_LINK}/${params.id}`),
       },
       // students
       {
@@ -105,7 +101,7 @@ const router = createBrowserRouter([
         path: "selected-class/payment/:id",
         element: <Payment />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/selected-classes/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_LINK}/${params.id}`),
       },
     ],
   },

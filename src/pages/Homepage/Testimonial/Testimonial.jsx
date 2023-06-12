@@ -15,7 +15,6 @@ const Testimonial = () => {
       .then((res) => res.json())
       .then((data) => setTestimonials(data));
   }, []);
-  console.log(testimonials);
   return (
     <div className="mt-20">
       <SectionTitle title="Testimonial" className="mb-[150px]" />

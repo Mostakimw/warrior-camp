@@ -8,10 +8,8 @@ import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
   const [selectedClasses, refetch] = useSelectedClass();
-  console.log(selectedClasses);
   const [axiosSecure] = useAxiosSecure();
   const handleDeleteClass = (id) => {
-    console.log("clicked");
     Swal.fire({
       title: "Are you sure?",
       text: `You want to remove this from your select list?`,
@@ -23,7 +21,6 @@ const SelectedClass = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/selected-classes/${id}`).then((res) => {
-          console.log(res.data);
           if (res.data.deletedCount > 0) {
             refetch();
             toast.success("Successfully Removed!");

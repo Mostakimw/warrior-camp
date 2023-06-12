@@ -6,7 +6,7 @@ const ManageClasses = () => {
   const [classes, refetch] = useClasses();
 
   const handleStatus = (status, id) => {
-    fetch(`http://localhost:5000/classes/${id}/status`, {
+    fetch(`${import.meta.env.VITE_API_LINK}/classes/${id}/status`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -14,8 +14,7 @@ const ManageClasses = () => {
       body: JSON.stringify({ status }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(() => {
         refetch();
         if (status === "approved") {
           toast(`Class has been ${status}`, {
@@ -56,6 +55,7 @@ const ManageClasses = () => {
               <th>Available Seats</th>
               <th>Price</th>
               <th>Status</th>
+              {/* // TODO: have to work with feedback */}
             </tr>
           </thead>
           <tbody>
@@ -66,10 +66,7 @@ const ManageClasses = () => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-20 h-20">
-                        <img
-                          src={singleClass?.classThumbnail}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        <img src={singleClass?.classThumbnail} alt="" />
                       </div>
                     </div>
                   </div>

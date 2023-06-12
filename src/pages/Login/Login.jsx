@@ -2,9 +2,16 @@ import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import image from "../../assets/login.svg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const Login = () => {
   const { loginUser } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPass = () => {
+    setShowPassword(!showPassword);
+  };
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,30 +22,17 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     loginUser(data?.email, data?.password)
-      .then((result) => {
-        console.log("login user", result.user);
+      .then(() => {
         navigate(from, { replace: true });
       })
-      .catch((error) => {
-        console.log("error from login page", error.message);
-      });
+      .catch(() => {});
   };
   return (
     <div className="h-[80vh] md:flex mt-10">
       <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
         <div>
-          <h1 className="text-white font-bold text-4xl font-sans">GoFinance</h1>
-          <p className="text-white mt-1">
-            The most popular peer to peer lending at SEA
-          </p>
-          <button
-            type="submit"
-            className="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2"
-          >
-            Read More
-          </button>
+          <img src={image} alt="" />
         </div>
         <div className="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         <div className="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
@@ -48,7 +42,7 @@ const Login = () => {
       <div className="px-16 flex flex-col md:w-1/2  py-10 justify-center bg-white">
         <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
           <h1 className="text-gray-800 font-bold text-2xl mb-1">Hello!</h1>
-          <p className="text-sm font-normal text-gray-600 mb-7">
+          <p className="text-sm font-normal text-[#FCC044] mb-7">
             Welcome To Warrior
           </p>
           <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
@@ -91,10 +85,21 @@ const Login = () => {
             </svg>
             <input
               className="pl-2 outline-none border-none w-full"
-              type="text"
+              type={showPassword ? "text" : "password"}
               {...register("password", { required: true })}
               placeholder="Password"
             />
+            {showPassword ? (
+              <FaEye
+                className="hover:cursor-pointer"
+                onClick={handleShowPass}
+              />
+            ) : (
+              <FaEyeSlash
+                className="hover:cursor-pointer"
+                onClick={handleShowPass}
+              />
+            )}
           </div>
           {errors.password && (
             <span className="text-error">Password is required</span>

@@ -36,7 +36,7 @@ const AddClass = () => {
 
     // posting classdata to db
 
-    fetch("http://localhost:5000/classes", {
+    fetch(`${import.meta.env.VITE_API_LINK}/classes`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

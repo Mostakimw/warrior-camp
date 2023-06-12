@@ -3,16 +3,26 @@ import SocialLogin from "../Login/SocialLogin";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { saveUserToDb } from "../../api/Auth";
+import image from "../../assets/login.svg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const Registration = () => {
-  const { user, createUser, updateUserProfile } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleShowPass = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleShowConfirmPass = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-  if (user) {
-    console.log("user created");
-  }
   const {
     register,
     handleSubmit,
@@ -38,18 +48,7 @@ const Registration = () => {
       <div className="min-h-[80vh] md:flex mt-10">
         <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
           <div>
-            <h1 className="text-white font-bold text-4xl font-sans">
-              GoFinance
-            </h1>
-            <p className="text-white mt-1">
-              The most popular peer to peer lending at SEA
-            </p>
-            <button
-              type="submit"
-              className="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2"
-            >
-              Read More
-            </button>
+            <img src={image} alt="" />
           </div>
           <div className="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
           <div className="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
@@ -60,7 +59,7 @@ const Registration = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
             <h1 className="text-gray-800 font-bold text-2xl mb-1">Hello!</h1>
             <p className="text-sm font-normal text-[#FCC044] mb-7">
-              Welcome To Warrior
+              Welcome To Warrior, Start Your Journey With Us!
             </p>
             {/*  name  */}
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl ">
@@ -158,10 +157,21 @@ const Registration = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none w-full"
-                type="text"
+                type={showPassword ? "text" : "password"}
                 {...register("password", { required: true })}
                 placeholder="Password"
               />
+              {showPassword ? (
+                <FaEye
+                  className="hover:cursor-pointer"
+                  onClick={handleShowPass}
+                />
+              ) : (
+                <FaEyeSlash
+                  className="hover:cursor-pointer"
+                  onClick={handleShowPass}
+                />
+              )}
             </div>
             {errors.password && (
               <span className="text-error">Password is required</span>
@@ -183,10 +193,21 @@ const Registration = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none w-full"
-                type="text"
+                type={showConfirmPassword ? "text" : "password"}
                 {...register("confirmPassword", { required: true })}
                 placeholder="Confirm Password"
               />
+              {showConfirmPassword ? (
+                <FaEye
+                  className="hover:cursor-pointer"
+                  onClick={handleShowConfirmPass}
+                />
+              ) : (
+                <FaEyeSlash
+                  className="hover:cursor-pointer"
+                  onClick={handleShowConfirmPass}
+                />
+              )}
             </div>
             {errors.confirmPassword && (
               <span className="text-error">Confirm password is required</span>

@@ -4,7 +4,6 @@ import moment from "moment";
 
 const PaymentHistory = () => {
   const [paymentHistory] = usePaymentHistory();
-  console.log(paymentHistory);
   return (
     <div className="w-full">
       <SectionTitle title="Selected Classes" />

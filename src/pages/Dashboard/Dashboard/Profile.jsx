@@ -14,8 +14,7 @@ const Profile = () => {
           to="/dashboard/my-profile"
           className="underline block text-2xl text-gray-100"
         >
-          {/* {user?.displayName} */}
-          Hello
+          {user?.displayName}
         </NavLink>
         <h2 className=" underline mt-2 text-gray-100">{user?.email}</h2>
       </div>

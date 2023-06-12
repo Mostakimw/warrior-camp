@@ -7,11 +7,11 @@ import { useEffect } from "react";
 
 const Classes = () => {
   const [classes] = useClasses();
-  console.log(classes);
 
   useEffect(() => {
     AOS.init();
   }, []);
+
   return (
     <div>
       <SectionTitle title="All Classes"></SectionTitle>

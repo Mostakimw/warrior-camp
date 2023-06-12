@@ -16,7 +16,8 @@
 }
 
 .drawer-side a.active {
-  color: #fcc044;
+  color: #fcc044 !important;
+  background: transparent;
 }
 .my-nav a {
   background-color: transparent;
@@ -24,5 +25,5 @@
 }
 
 .my-nav a.active {
-  color: #fcc044;
+  color: #fcc044 !important;
 }
