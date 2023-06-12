@@ -10,7 +10,7 @@ const useInstructors = () => {
     queryKey: ["classes"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure("/classes");
+      const res = await axiosSecure("/instructors");
       return res.data;
     },
   });
