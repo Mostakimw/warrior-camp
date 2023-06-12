@@ -15,7 +15,7 @@ const TestimonialCard = ({ testimonial }) => {
         </div>
       </div>
 
-      <div className="testimonial-content pt-16 px-12 pb-10 border h-[350px] border-purple-200">
+      <div className="testimonial-content pt-16 px-12 pb-10 border h-[350px] max-sm:h-[420px] border-purple-200">
         <div className="flex justify-between mt-4">
           <div>
             <p className="text-xl font-bold  text-gray-800">{name}</p>
