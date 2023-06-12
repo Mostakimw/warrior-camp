@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet-async";
 
 const ManageClasses = () => {
   const [classes, refetch] = useAllClasses();
-  console.log(classes);
 
   const handleStatus = (status, id) => {
     fetch(`${import.meta.env.VITE_API_LINK}/classes/${id}/status`, {
