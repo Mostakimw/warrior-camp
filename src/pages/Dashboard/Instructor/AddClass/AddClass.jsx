@@ -33,10 +33,11 @@ const AddClass = () => {
       enroll: 0,
       isEnrolled: false,
     };
+    console.log(classData);
 
     // posting classdata to db
 
-    fetch(`${import.meta.env.VITE_API_LINK}/classes`, {
+    fetch(`http://localhost:5000/classes`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

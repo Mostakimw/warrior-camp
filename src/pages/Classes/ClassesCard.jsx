@@ -93,7 +93,7 @@ const ClassesCard = ({ singleClass }) => {
         </h2>
         <p className="text-gray-200">Instructor: {userName}</p>
         <p className="text-gray-200">Available Seats: {availableSeats}</p>
-        <p className="text-gray-200">Price: {price}</p>
+        <p className="text-gray-200">Price: ${price}</p>
         <p className="mt-4">{description}</p>
         <div className=" mt-6">
           <button

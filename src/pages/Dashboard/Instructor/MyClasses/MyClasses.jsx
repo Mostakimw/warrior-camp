@@ -13,10 +13,14 @@ const MyClasses = () => {
   const { data: classes = [], refetch } = useQuery({
     queryKey: ["classes", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/classes?email=${user?.email}`);
+      const res = await axiosSecure.get(
+        `/instructor-classes?email=${user?.email}`
+      );
       return res.data;
     },
   });
+
+  console.log(classes);
 
   const handleDelete = (id) => {
     Swal.fire({

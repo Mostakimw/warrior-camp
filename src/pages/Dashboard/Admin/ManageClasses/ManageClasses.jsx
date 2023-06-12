@@ -1,9 +1,10 @@
 import { toast } from "react-hot-toast";
 import SectionTitle from "../../../../components/SectionTitle";
-import useClasses from "../../../../hooks/useClasses";
+import useAllClasses from "../../../../hooks/useAllClasses";
 
 const ManageClasses = () => {
-  const [classes, refetch] = useClasses();
+  const [classes, refetch] = useAllClasses();
+  console.log(classes);
 
   const handleStatus = (status, id) => {
     fetch(`${import.meta.env.VITE_API_LINK}/classes/${id}/status`, {
@@ -73,7 +74,7 @@ const ManageClasses = () => {
                 </td>
                 <td>{singleClass?.className}</td>
                 <td>{singleClass?.userName}</td>
-                <td>gg.gg.com</td>
+                <td>{singleClass?.email}</td>
                 <td>{singleClass?.availableSeats}</td>
                 <td>${singleClass?.price}</td>
                 <td>
@@ -92,12 +93,6 @@ const ManageClasses = () => {
                         className="bg-success btn btn-xs"
                       >
                         Approve
-                      </button>
-                      <button
-                        onClick={() => handleStatus("pending", singleClass._id)}
-                        className="bg-info btn btn-xs"
-                      >
-                        Pending
                       </button>
                       <button
                         onClick={() => handleStatus("denied", singleClass._id)}
