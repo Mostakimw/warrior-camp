@@ -21,8 +21,6 @@ const MyClasses = () => {
     },
   });
 
-  console.log(classes);
-
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",

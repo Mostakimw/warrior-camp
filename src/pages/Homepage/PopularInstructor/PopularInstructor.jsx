@@ -4,6 +4,7 @@ import InstructorCard from "../../Instructos/InstructorCard";
 
 const PopularInstructor = () => {
   const [instructors] = useInstructors();
+  console.log(instructors);
   return (
     <div className="mt-28">
       <SectionTitle title="Our Top Instructors"></SectionTitle>

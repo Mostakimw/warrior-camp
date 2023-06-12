@@ -8,7 +8,11 @@ const InstructorCard = ({ instructor }) => {
         {userName}
       </h1>
       <figure className="px-10">
-        <img src={image} alt="Shoes" className="rounded-xl h-[300px]" />
+        <img
+          src={image}
+          alt="Instructor image"
+          className="rounded-xl h-[300px]"
+        />
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{name}</h2>

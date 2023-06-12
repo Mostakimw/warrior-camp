@@ -34,7 +34,6 @@ const AddClass = () => {
       enroll: 0,
       isEnrolled: false,
     };
-    console.log(classData);
 
     // posting classdata to db
 
