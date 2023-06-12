@@ -1,5 +1,4 @@
 // Import Swiper styles
-import { FreeMode, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -19,13 +18,22 @@ const Testimonial = () => {
     <div className="mt-20">
       <SectionTitle title="Testimonial" className="mb-[150px]" />
       <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        freeMode={true}
+        slidesPerView={1}
+        spaceBetween={20}
         pagination={{
           clickable: true,
         }}
-        modules={[FreeMode, Pagination]}
+        autoplay={{
+          delay: 5000,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+        }}
         className="mySwiper mt-20"
       >
         {testimonials.map((testimonial) => (

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <section className="py-20 bg-gray-800 overflow-hidden mt-24">
@@ -155,12 +157,13 @@ const Footer = () => {
             </h3>
             <ul>
               <li className="mb-6 text-gray-200 tracking-tight">
-                <a
+                <Link
+                  to="classes"
                   className="text-white hover:text-gray-300 tracking-tight transition duration-200"
                   href="#"
                 >
-                  Free eBooks
-                </a>
+                  Classes
+                </Link>
               </li>
               <li className="mb-6 text-gray-200 tracking-tight">
                 <a
@@ -171,12 +174,13 @@ const Footer = () => {
                 </a>
               </li>
               <li className="mb-6 text-gray-200 tracking-tight">
-                <a
+                <Link
+                  to="/instructors"
                   className="text-white hover:text-gray-300 tracking-tight transition duration-200"
                   href="#"
                 >
-                  How to - Blog
-                </a>
+                  Our Instructors
+                </Link>
               </li>
               <li className="text-gray-200 tracking-tight">
                 <a
