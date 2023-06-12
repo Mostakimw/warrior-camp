@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../components/SectionTitle";
 import usePaymentHistory from "../../../../hooks/usePaymentHistory";
 import moment from "moment";
@@ -6,7 +7,10 @@ const PaymentHistory = () => {
   const [paymentHistory] = usePaymentHistory();
   return (
     <div className="w-full">
-      <SectionTitle title="Selected Classes" />
+      <Helmet>
+        <title>Payment History || WarriorCamp</title>
+      </Helmet>
+      <SectionTitle title="Payment History" />
       <div className="flex items-center justify-between mt-10">
         <h1 className="font-semibold text-2xl">
           Total Payment: {paymentHistory.length}

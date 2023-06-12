@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../components/SectionTitle";
 import EmptyState from "../../../../components/shared/EmptyState";
 import usePaymentHistory from "../../../../hooks/usePaymentHistory";
@@ -6,6 +7,9 @@ const MyEnrollment = () => {
   const [paymentHistory] = usePaymentHistory();
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Enrolled Classes || WarriorCamp</title>
+      </Helmet>
       <SectionTitle title="Enrolled Classes" />
 
       {paymentHistory.length > 0 ? (

@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const SelectedClass = () => {
   const [selectedClasses, refetch] = useSelectedClass();
@@ -31,6 +32,9 @@ const SelectedClass = () => {
   };
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Selected Classes || WarriorCamp</title>
+      </Helmet>
       <SectionTitle title="Selected Classes" />
       <div className="flex items-center justify-between mt-10">
         <h1 className="font-semibold text-2xl">

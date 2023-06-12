@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const InstructorCard = ({ instructor }) => {
-  const { name, email, image, userName, availableSeats } = instructor;
+  const { name, email, image, userName } = instructor;
   return (
     <div className="card bg-base-100 shadow-xl">
       <h1 className="text-3xl font-semibold text-gray-800 inline-block py-5 text-center">

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyClasses = () => {
   const { user } = useAuth();
@@ -45,6 +46,9 @@ const MyClasses = () => {
   };
   return (
     <div className="w-full">
+      <Helmet>
+        <title>My Classes || WarriorCamp</title>
+      </Helmet>
       <SectionTitle title="All Classes" />
 
       <div className="overflow-x-auto mt-12 w-full">

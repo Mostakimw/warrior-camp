@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 import image from "../../assets/login.svg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { loginUser } = useAuth();
@@ -30,6 +31,9 @@ const Login = () => {
   };
   return (
     <div className="h-[80vh] md:flex mt-10">
+      <Helmet>
+        <title>Login || WarriorCamp</title>
+      </Helmet>
       <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
         <div>
           <img src={image} alt="" />

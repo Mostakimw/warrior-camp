@@ -1,6 +1,7 @@
 import { toast } from "react-hot-toast";
 import SectionTitle from "../../../../components/SectionTitle";
 import useAllClasses from "../../../../hooks/useAllClasses";
+import { Helmet } from "react-helmet-async";
 
 const ManageClasses = () => {
   const [classes, refetch] = useAllClasses();
@@ -41,6 +42,9 @@ const ManageClasses = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Manage Classes || WarriorCamp</title>
+      </Helmet>
       <SectionTitle title="All Classes" />
 
       <div className="overflow-x-auto mt-12 w-full">

@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import SectionTitle from "../../../../components/SectionTitle";
 import { useAuth } from "../../../../hooks/useAuth";
 import shortid from "shortid";
+import { Helmet } from "react-helmet-async";
 
 const AddClass = () => {
   const { user } = useAuth();
@@ -57,6 +58,9 @@ const AddClass = () => {
   };
   return (
     <div className="w-full px-10">
+      <Helmet>
+        <title>Add Class || WarriorCamp</title>
+      </Helmet>
       <SectionTitle title="Add Your Class"></SectionTitle>
       <form
         onSubmit={handleSubmitForm}

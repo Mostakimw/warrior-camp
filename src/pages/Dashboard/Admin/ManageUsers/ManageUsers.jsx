@@ -3,6 +3,7 @@ import SectionTitle from "../../../../components/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -60,6 +61,9 @@ const ManageUsers = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Manage Users || WarriorCamp</title>
+      </Helmet>
       <SectionTitle title="Manage All Users" />
 
       <div className="overflow-x-auto mt-12 w-full">

@@ -6,6 +6,7 @@ import { saveUserToDb } from "../../api/Auth";
 import image from "../../assets/login.svg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Registration = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -44,7 +45,10 @@ const Registration = () => {
       .catch(() => {});
   };
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Registration || WarriorCamp</title>
+      </Helmet>
       <div className="min-h-[80vh] md:flex mt-10">
         <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
           <div>
@@ -132,7 +136,7 @@ const Registration = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none w-full"
-                type="text"
+                type="email"
                 {...register("email", { required: true })}
                 placeholder="Email Address"
               />
@@ -158,7 +162,15 @@ const Registration = () => {
               <input
                 className="pl-2 outline-none border-none w-full"
                 type={showPassword ? "text" : "password"}
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: "Password is required",
+                  pattern: {
+                    value:
+                      /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}/,
+                    message:
+                      "Password must have one Uppercase one lower case, one number and one special character",
+                  },
+                })}
                 placeholder="Password"
               />
               {showPassword ? (
@@ -236,7 +248,7 @@ const Registration = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
