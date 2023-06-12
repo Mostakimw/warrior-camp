@@ -15,8 +15,7 @@ const Classes = () => {
   return (
     <div>
       <SectionTitle title="All Classes"></SectionTitle>
-      <h1>class collectopn</h1>
-      <div>
+      <div className="mt-16">
         {classes.map((singleClass) => (
           <ClassesCard
             key={singleClass._id}

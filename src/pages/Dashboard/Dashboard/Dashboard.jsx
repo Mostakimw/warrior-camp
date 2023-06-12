@@ -17,6 +17,7 @@ const Dashboard = () => {
   };
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
+  const [isStudent, isStudentLoading] = useInstructor();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -40,17 +41,7 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             {/* {isAdmin ? <AdminDashboard /> : <StudentDashboard />}
             {isInstructor ? <InstructorDashboard /> : <StudentDashboard />} */}
-            {!isAdminLoading && !isInstructorLoading && (
-              <>
-                {isAdmin ? (
-                  <AdminDashboard />
-                ) : isInstructor ? (
-                  <InstructorDashboard />
-                ) : (
-                  <StudentDashboard />
-                )}
-              </>
-            )}
+            {isAdmin ? <AdminDashboard /> : <InstructorDashboard />}
 
             <div className="divider"></div>
             <li>

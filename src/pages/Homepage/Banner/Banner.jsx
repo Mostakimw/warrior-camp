@@ -26,7 +26,7 @@ const Banner = () => {
               <h3 className="text-white text-4xl font-bold section-title">
                 Discover the Way of Martial Arts
               </h3>
-              <p className="text-gray-100 text-lg max-w-xl mt-3">
+              <p className="text-[#d7c8c8] text-lg max-w-xl mt-3">
                 Embark on a journey of self-discovery through martial arts. Join
                 our Summer Camp Learning School to cultivate discipline, build
                 strength, and foster personal growth. Start your martial arts
@@ -46,7 +46,7 @@ const Banner = () => {
               <h3 className="text-white text-4xl font-bold section-title">
                 Empowering Minds and Bodies
               </h3>
-              <p className="text-gray-100 text-lg max-w-xl mt-3">
+              <p className="text-[#d7c8c8] text-lg max-w-xl mt-3">
                 Experience the power of martial arts at our Summer Camp Learning
                 School. Develop mental fortitude, enhance physical fitness, and
                 boost self-confidence. Join our community and empower yourself
@@ -66,7 +66,7 @@ const Banner = () => {
               <h3 className="text-white text-4xl font-bold section-title">
                 Ignite Your Inner Warrior
               </h3>
-              <p className="text-gray-100 text-lg max-w-xl mt-3">
+              <p className="text-[#d7c8c8] text-lg max-w-xl mt-3">
                 Unleash your inner warrior at our Summer Camp Learning School.
                 Learn martial arts, develop resilience, and unlock your full
                 potential. Join us on this transformative journey today!

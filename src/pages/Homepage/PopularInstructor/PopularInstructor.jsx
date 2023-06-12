@@ -5,11 +5,14 @@ import InstructorCard from "../../Instructos/InstructorCard";
 const PopularInstructor = () => {
   const [instructors] = useInstructors();
   return (
-    <div className="mt-20">
+    <div className="mt-28">
       <SectionTitle title="Our Top Instructors"></SectionTitle>
-      <div className="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {instructors.map((instructor) => (
-          <InstructorCard key={instructor._id}></InstructorCard>
+          <InstructorCard
+            key={instructor._id}
+            instructor={instructor}
+          ></InstructorCard>
         ))}
       </div>
     </div>

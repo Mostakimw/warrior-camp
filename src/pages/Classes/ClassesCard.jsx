@@ -1,13 +1,17 @@
 import Swal from "sweetalert2";
 import { useAuth } from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const ClassesCard = ({ singleClass }) => {
   const { user } = useAuth();
   const email = user?.email;
+
   const [axiosSecure] = useAxiosSecure();
-  const [disable, setDisable] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const navigate = useNavigate();
+
   const {
     _id,
     courseId,
@@ -18,51 +22,76 @@ const ClassesCard = ({ singleClass }) => {
     price,
     description,
   } = singleClass;
-  // TODO: have to work with select btn
+
+  useEffect(() => {
+    if (availableSeats === 0) {
+      setDisabled(true);
+    }
+  }, [availableSeats]);
   const handleSelect = () => {
     console.log(singleClass);
-    const selectedClasses = {
-      _id,
-      courseId,
-      classThumbnail,
-      className,
-      userName,
-      availableSeats,
-      price,
-      description,
-      selected: false,
-      email: email,
-    };
-
-    axiosSecure
-      .post("/selected-classes", selectedClasses)
-      .then((response) => {
-        console.log(response);
-        console.log(response.data);
-        if (response.data.insertedId) {
-          Swal.fire("Done!", "You Select This Classes", "success");
-        }
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 409) {
-          Swal.fire("Error!", "This class is already selected", "error");
-        } else {
-          console.error(error);
-          Swal.fire("Error!", "An error occurred", "error");
+    if (!user?.email) {
+      Swal.fire({
+        title: "Not Logged In!",
+        text: "You have to login first!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
         }
       });
+    } else {
+      const selectedClasses = {
+        _id,
+        courseId,
+        classThumbnail,
+        className,
+        userName,
+        availableSeats,
+        price,
+        description,
+        selected: false,
+        email: email,
+      };
 
-    console.log(selectedClasses);
+      axiosSecure
+        .post("/classes", selectedClasses)
+        .then((response) => {
+          console.log(response);
+          console.log(response.data);
+          if (response.data.insertedId) {
+            Swal.fire("Done!", "You Select This Classes", "success");
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 409) {
+            Swal.fire("Error!", "This class is already selected", "error");
+          } else {
+            console.error(error);
+            Swal.fire("Error!", "An error occurred", "error");
+          }
+        });
+
+      console.log(selectedClasses);
+    }
   };
+
+  const bgGradientColor =
+    availableSeats === 0
+      ? "from-red-600 to-red-500"
+      : "from-[#848C2F] to-[#83881d]";
+  const bgStyle = `bg-gradient-to-r ${bgGradientColor}`;
+
   return (
     <div
       data-aos="fade-up"
       data-aos-duration="1200"
       data-aos-delay="200"
-      style={{
-        backgroundImage: "linear-gradient(90deg, #848C2F, #83881d)",
-      }}
-      className="w-9/12 mx-auto flex justify-between items-center gap-8 mb-8 bg- text-white py-10 px-6 mt-10 rounded-md shadow-lg"
+      className={`w-9/12 mx-auto flex justify-between items-center gap-8 mb-8 bg- text-white py-10 px-6 mt-10 rounded-md shadow-lg ${bgStyle}`}
     >
       <div className="w-1/2 p-4">
         <h2 className="text-3xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#FCC044] via-red-300 to-yellow-500">
@@ -75,10 +104,14 @@ const ClassesCard = ({ singleClass }) => {
         <div className=" mt-6">
           <button
             onClick={handleSelect}
-            disabled={disable}
+            disabled={disabled}
             className="btn btn-outline text-2l tracking-widest w-full text-gray-100 border-2 border-white hover:bg-[#FCC044]  duration-300 hover:border-none"
           >
-            Select
+            {!disabled ? (
+              "Select"
+            ) : (
+              <span className="text-error">All Seats Are Booked</span>
+            )}
           </button>
         </div>
       </div>

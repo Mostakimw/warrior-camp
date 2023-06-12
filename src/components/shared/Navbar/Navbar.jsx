@@ -7,8 +7,9 @@ import useInstructor from "../../../hooks/useInstructor";
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
 
-  const [isAdmin] = useAdmin();
+  const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstructor] = useInstructor();
+  const [isStudent] = useInstructor();
 
   const handleLogout = () => {
     logoutUser()
@@ -49,19 +50,29 @@ const Navbar = () => {
               className="menu dropdown-content shadow bg-base-100 text-gray-800 w-40 z-10"
             >
               <li>
-                {isAdmin && (
+                {isAdmin ? (
                   <Link to="/dashboard/manage-users" className="btn pt-4">
                     Dashboard
                   </Link>
+                ) : isInstructor ? (
+                  <Link to="/dashboard/my-classes" className="btn pt-4">
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link to="/dashboard/selected-class" className="btn pt-4">
+                    Dashboard
+                  </Link>
                 )}
-                {isInstructor && (
+                {/* {isInstructor && (
                   <Link to="/dashboard/my-classes" className="btn pt-4">
                     Dashboard
                   </Link>
                 )}
-                <Link to="/dashboard/selected-class" className="btn pt-4">
-                  Dashboard
-                </Link>
+                {isStudent && (
+                  <Link to="/dashboard/selected-class" className="btn pt-4">
+                    Dashboard
+                  </Link> */}
+                {/* )} */}
               </li>
               <li>
                 <button onClick={handleLogout} className="btn pt-4 mt-3">

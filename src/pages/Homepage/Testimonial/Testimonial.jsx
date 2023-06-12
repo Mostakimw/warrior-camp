@@ -27,7 +27,7 @@ const Testimonial = () => {
           clickable: true,
         }}
         modules={[FreeMode, Pagination]}
-        className="mySwiper mt-16"
+        className="mySwiper mt-20"
       >
         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial._id}>
