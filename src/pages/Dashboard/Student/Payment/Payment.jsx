@@ -7,6 +7,7 @@ import { useLoaderData } from "react-router-dom";
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_PK);
 const Payment = () => {
   const classData = useLoaderData();
+  console.log(classData);
   return (
     <div>
       <SectionTitle title="Complete Your Purchase"></SectionTitle>

@@ -37,7 +37,7 @@ const AddClass = () => {
 
     // posting classdata to db
 
-    fetch(`https://warrior-camp-server.vercel.app/classes`, {
+    fetch(`${import.meta.env.VITE_API_LINK}/classes`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
