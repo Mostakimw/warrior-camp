@@ -10,10 +10,10 @@ const Home = () => {
       <Helmet>
         <title>Home || WarriorCamp</title>
       </Helmet>
-      {/* <Banner /> */}
-      {/* <PopularInstructor /> */}
+      <Banner />
+      <PopularInstructor />
       <TopClass />
-      {/* <Testimonial /> */}
+      <Testimonial />
     </div>
   );
 };
