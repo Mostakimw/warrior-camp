@@ -1,15 +1,21 @@
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination } from "swiper";
-SwiperCore.use([Navigation, Pagination]);
+import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const Banner = () => {
   return (
     <div>
       <Swiper
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        delay={500}
         navigation
         pagination={{ clickable: true }}
         spaceBetween={30}

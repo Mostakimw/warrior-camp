@@ -9,7 +9,7 @@ const TestimonialCard = ({ testimonial }) => {
         <div className="testimonial-image-wrapper">
           <img
             src={avatar}
-            className="w-32 h-32 rounded-full shadow border border-[#FCC044]"
+            className="w-32 h-32 rounded-full object-cover shadow border border-[#FCC044]"
             alt=""
           />
         </div>

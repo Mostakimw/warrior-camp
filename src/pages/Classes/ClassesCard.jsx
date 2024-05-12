@@ -3,6 +3,8 @@ import { useAuth } from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+// import "aos/dist/aos.css";
+// import AOS from "aos";
 
 const ClassesCard = ({ singleClass }) => {
   const { user } = useAuth();
@@ -13,7 +15,6 @@ const ClassesCard = ({ singleClass }) => {
   const navigate = useNavigate();
 
   const {
-    _id,
     courseId,
     classThumbnail,
     className,
@@ -28,6 +29,8 @@ const ClassesCard = ({ singleClass }) => {
       setDisabled(true);
     }
   }, [availableSeats]);
+
+  // selection handle
   const handleSelect = () => {
     if (!user?.email) {
       Swal.fire({
@@ -44,8 +47,8 @@ const ClassesCard = ({ singleClass }) => {
         }
       });
     } else {
+      // storing this values in db
       const selectedClasses = {
-        _id,
         courseId,
         classThumbnail,
         className,
@@ -57,6 +60,7 @@ const ClassesCard = ({ singleClass }) => {
         email: email,
       };
 
+      // posting data to backend
       axiosSecure
         .post("/selected-classes", selectedClasses)
         .then((response) => {
@@ -65,6 +69,7 @@ const ClassesCard = ({ singleClass }) => {
           }
         })
         .catch((error) => {
+          console.log(error);
           if (error.response && error.response.status === 409) {
             Swal.fire("Error!", "This class is already selected", "error");
           } else {
@@ -85,16 +90,25 @@ const ClassesCard = ({ singleClass }) => {
       data-aos="fade-up"
       data-aos-duration="1200"
       data-aos-delay="200"
-      className={`w-9/12 mx-auto flex justify-between items-center gap-8 mb-8 bg- text-white py-10 px-6 mt-10 rounded-md shadow-lg ${bgStyle}`}
+      className={`w-full md:w-9/12 mx-auto grid grid-cols-2 lg:grid-cols-12 gap-8 mb-8 bg- text-white py-10 px-6 mt-10 rounded-md shadow-lg ${bgStyle}`}
     >
-      <div className="w-1/2 p-4">
-        <h2 className="text-3xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#FCC044] via-red-300 to-yellow-500">
+      {/* text div */}
+      <div className="col-span-5 p-0 md:p-4 order-2 lg:order-1">
+        <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#FCC044] via-red-300 to-yellow-500">
           {className}
         </h2>
-        <p className="text-gray-200">Instructor: {userName}</p>
-        <p className="text-gray-200">Available Seats: {availableSeats}</p>
-        <p className="text-gray-200">Price: ${price}</p>
-        <p className="mt-4">{description}</p>
+        <p className="font-semibold text-xl text-gray-200">
+          Instructor: <span className="font-mono font-light">{userName}</span>
+        </p>
+        <div className="flex justify-between">
+          <p className="font-semibold text-xl text-gray-200">
+            Seats: <span className="font-mono font-light">{availableSeats}</span>
+          </p>
+          <p className="font-semibold text-xl text-gray-200 ">
+            Price: <span className="font-mono font-light">${price}</span>
+          </p>
+        </div>
+        <p className="mt-4 text-gray-100 font-light">{description}</p>
         <div className=" mt-6">
           <button
             onClick={handleSelect}
@@ -102,16 +116,19 @@ const ClassesCard = ({ singleClass }) => {
             className="btn btn-outline text-2l tracking-widest w-full text-gray-100 border-2 border-white hover:bg-[#FCC044]  duration-300 hover:border-none"
           >
             {!disabled ? (
-              "Select"
+              "Select this class"
             ) : (
               <span className="text-error">All Seats Are Booked</span>
             )}
           </button>
         </div>
       </div>
-      <div className="flex justify-center">
+      {/* image div */}
+      <div className=" col-span-7 flex justify-center order-1 lg:order-2">
         <img
-          className="px-4 rounded-md overflow-hidden"
+          data-aos="fade-left"
+          data-aos-duration="1200"
+          className="px-4 rounded-md overflow-hidden object-cover"
           style={{ borderRadius: "8px" }}
           src={classThumbnail}
           alt="Course"

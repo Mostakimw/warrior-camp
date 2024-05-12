@@ -44,6 +44,7 @@ const Registration = () => {
       })
       .catch(() => {});
   };
+
   return (
     <>
       <Helmet>
@@ -60,6 +61,7 @@ const Registration = () => {
           <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
         <div className="px-16 flex flex-col md:w-1/2  py-10 justify-center bg-white">
+          {/* form start */}
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
             <h1 className="text-gray-800 font-bold text-2xl mb-1">Hello!</h1>
             <p className="text-sm font-normal text-[#FCC044] mb-7">
@@ -168,7 +170,7 @@ const Registration = () => {
                     value:
                       /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}/,
                     message:
-                      "Password must have one Uppercase one lower case, one number and one special character",
+                      "Password must have eight character, one Uppercase, one lower case, one number and one special character",
                   },
                 })}
                 placeholder="Password"
@@ -186,7 +188,7 @@ const Registration = () => {
               )}
             </div>
             {errors.password && (
-              <span className="text-error">Password is required</span>
+              <span className="text-error">{errors?.password?.message}</span>
             )}
 
             {/* confirm password  */}

@@ -7,7 +7,7 @@ const useInstructors = () => {
   const { loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
   const { data: instructors = [] } = useQuery({
-    queryKey: ["classes"],
+    queryKey: ["instructors"],
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure("/instructors");
