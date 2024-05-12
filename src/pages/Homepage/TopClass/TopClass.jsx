@@ -9,12 +9,10 @@ const TopClass = () => {
   const { data: topClass = [] } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
-      const res = await axiosSecure(`/classes?limit=${6}&sortBy=enroll`);
+      const res = await axiosSecure(`/classes?limit=${3}&sortBy=enroll`);
       return res.data;
     },
   });
-
-  console.log(topClass);
 
   return (
     <><div className="mt-28">

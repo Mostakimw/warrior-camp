@@ -8,7 +8,7 @@ const Footer = () => {
           className="mb-14 p-11 rounded-2xl"
           style={{
             background:
-              "url('https://img.freepik.com/free-photo/empty-save-texture-room-light_1258-175.jpg?w=1380&t=st=1686430444~exp=1686431044~hmac=c3fb6960d3c8d352db45139fea50e1a135a32d15b805184ccdc2329830b84dd1')",
+              "url('https://img.freepik.com/free-photo/empty-save-texture-room-light_1258-175.jpg')",
             backgroundRepeat: "no-repeat w-full",
             backgroundSize: "cover",
           }}

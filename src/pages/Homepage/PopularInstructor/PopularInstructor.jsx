@@ -9,7 +9,7 @@ const PopularInstructor = () => {
     <div className="mt-28">
       <SectionTitle title="Our Top Instructors"></SectionTitle>
       <div className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {instructors.map((instructor) => (
+        {instructors.slice(1,5).map((instructor) => (
           <InstructorCard
             key={instructor._id}
             instructor={instructor}

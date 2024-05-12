@@ -19,7 +19,7 @@ const InstructorCard = ({ instructor }) => {
         <p className="text-[#757575]">{email}</p>
         <div className="card-actions">
           <Link to="/classes">
-            <button className="btn btn-primary btn-sm mt-2">
+            <button className="btn btn-sm mt-2">
               See All Class
             </button>
           </Link>
