@@ -11,8 +11,8 @@ const Home = () => {
         <title>Home || WarriorCamp</title>
       </Helmet>
       {/* <Banner /> */}
-      <PopularInstructor />
-      {/* <TopClass /> */}
+      {/* <PopularInstructor /> */}
+      <TopClass />
       {/* <Testimonial /> */}
     </div>
   );
