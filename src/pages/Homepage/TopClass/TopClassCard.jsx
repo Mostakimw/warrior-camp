@@ -2,8 +2,9 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 
 const TopClassCard = ({ singleClass }) => {
   const { classThumbnail, className, availableSeats, price } = singleClass;
+
   return (
-    <div className="w-full h-[450px] ">
+    <div className="w-full h-[450px]">
       <div className="bg-white shadow-md border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 h-full relative">
         <img className="rounded-t-lg" src={classThumbnail} alt="" />
 

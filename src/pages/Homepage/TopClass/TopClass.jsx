@@ -5,6 +5,7 @@ import TopClassCard from "./TopClassCard";
 
 const TopClass = () => {
   const [axiosSecure] = useAxiosSecure();
+
   const { data: topClass = [] } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
@@ -13,18 +14,20 @@ const TopClass = () => {
     },
   });
 
+  console.log(topClass);
+
   return (
-    <div className="mt-28">
-      <SectionTitle title="Our Top Classes"></SectionTitle>
-      <div className="grid gap-8 lg:gap-16 md:gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16">
-        {topClass.map((singleClass) => (
-          <TopClassCard
-            key={singleClass?._id}
-            singleClass={singleClass}
-          ></TopClassCard>
-        ))}
-      </div>
+    <><div className="mt-28">
+    <SectionTitle title="Our Top Classes"></SectionTitle>
+    <div className="grid gap-8 lg:gap-16 md:gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16">
+      {topClass.map((singleClass) => (
+        <TopClassCard
+          key={singleClass?._id}
+          singleClass={singleClass}
+        ></TopClassCard>
+      ))}
     </div>
+  </div></>
   );
 };
 

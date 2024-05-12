@@ -5,18 +5,18 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/Loading/Loading"
+import Loading from "../../components/Loading/Loading";
 
 const Classes = () => {
   const [classes] = useClasses();
-  console.log(classes.length);
+  console.log(classes.length < 0);
 
   useEffect(() => {
     AOS.init();
   }, []);
 
-  if (classes.length < 0) {
-    return <Loading/>
+  if (classes.length === 0) {
+    return <Loading />;
   }
 
   return (
