@@ -29,12 +29,9 @@ const Registration = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
-  console.log(errors);
 
   // ! registration form submit handler
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data?.email, data?.password)
       .then(() => {
         updateUserProfile(data?.name, data?.photoUrl)
@@ -64,7 +61,6 @@ const Registration = () => {
           <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
         <div className="px-16 flex flex-col md:w-1/2  py-10 justify-center bg-white">
-
           {/* form start */}
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
             <h1 className="text-gray-800 font-bold text-2xl mb-1">Hello!</h1>

@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet-async";
 const SelectedClass = () => {
   const [selectedClasses, refetch] = useSelectedClass();
   const [axiosSecure] = useAxiosSecure();
+  
   const handleDeleteClass = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -30,6 +31,7 @@ const SelectedClass = () => {
       }
     });
   };
+
   return (
     <div className="w-full">
       <Helmet>
